@@ -40,7 +40,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative h-[95vh] md:h-screen w-full overflow-hidden bg-primary flex items-center justify-center">
+    <section className="relative min-h-[100svh] sm:h-screen w-full overflow-hidden bg-primary flex items-center justify-center">
       {/* Background Slideshow */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -63,14 +63,14 @@ export default function Hero() {
       </div>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-32 md:pt-24 lg:pt-16 text-left">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full pt-24 sm:pt-28 md:pt-24 lg:pt-16 text-left pb-28 sm:pb-0">
         <div className="max-w-3xl">
           {/* Subtle Tag badge */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glassmorphism text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-6"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full glassmorphism text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4 sm:mb-6"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Transforming Houses into Dream Homes</span>
@@ -81,7 +81,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-6 font-plus-jakarta"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] sm:leading-[1.1] mb-4 sm:mb-6 font-plus-jakarta"
           >
             Designing Beautiful <br />
             <span className="text-gold-gradient">Spaces That Inspire</span>
@@ -92,7 +92,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base md:text-lg lg:text-xl text-gray-300 font-light leading-relaxed mb-8 max-w-2xl font-outfit"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-light leading-relaxed mb-6 sm:mb-8 max-w-2xl font-outfit"
           >
             AURA Design Studio crafts bespoke, ultra-luxury interior spaces that merge
             architectural brilliance with absolute comfort. Experience interior design, redefined.
@@ -103,18 +103,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-20 md:mb-0"
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-20 md:mb-0"
           >
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="px-8 py-4 rounded-xl bg-gold-gradient text-primary font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-95 shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gold-gradient text-primary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-95 shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
             >
               <span>Get Free Consultation</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => handleScrollTo("#portfolio")}
-              className="px-8 py-4 rounded-xl border border-white/20 text-white font-bold text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-white/20 text-white font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 cursor-pointer"
             >
               <span>View Portfolio</span>
             </button>
@@ -144,22 +144,22 @@ export default function Hero() {
       </motion.div>
 
       {/* Slide Controls */}
-      <div className="absolute bottom-6 md:bottom-10 left-6 md:left-12 z-20 flex items-center gap-3">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:bottom-6 sm:left-6 sm:translate-x-0 z-20 flex flex-wrap items-center justify-center sm:justify-start gap-3 px-4 sm:px-0 w-[calc(100%-2rem)] sm:w-auto">
         <button
           onClick={handlePrev}
-          className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 cursor-pointer"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 cursor-pointer"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
         <button
           onClick={handleNext}
-          className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 cursor-pointer"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 cursor-pointer"
           aria-label="Next slide"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
-        <div className="flex items-center gap-2 ml-4">
+        <div className="flex items-center gap-2 ml-0 sm:ml-4 mt-2 sm:mt-0">
           {HERO_IMAGES.map((_, idx) => (
             <button
               key={idx}
@@ -177,7 +177,7 @@ export default function Hero() {
       {/* Bottom Scroll Down Mouse Animation */}
       <div
         onClick={() => handleScrollTo("#about")}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
       >
         <span className="text-[10px] uppercase tracking-[0.25em] text-white/60">Scroll Down</span>
         <div className="w-5 h-8 border-2 border-white/40 rounded-full flex justify-center p-1.5">
