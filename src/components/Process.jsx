@@ -128,14 +128,14 @@ export default function Process() {
       </div>
 
       {/* Decorative vertical timeline path */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none hidden md:block">
         <div className="timeline-path !w-[2px] !bg-accent" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
 
         {/* Title Block */}
-        <div className="text-center mb-28">
+        <div className="text-center mb-16 sm:mb-20 md:mb-28">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-accent/25 text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Our Journey</span>
@@ -149,7 +149,7 @@ export default function Process() {
         </div>
 
         {/* Timeline Items */}
-        <div className="space-y-24 md:space-y-36 relative">
+        <div className="space-y-16 sm:space-y-24 md:space-y-36 relative">
           {steps.map((step, idx) => {
             const IconComponent = step.icon;
             const isLeft = idx % 2 === 0;
@@ -158,10 +158,10 @@ export default function Process() {
             return (
               <div
                 key={step.num}
-                className="relative flex flex-col gap-12 md:gap-0 md:flex-row items-center justify-between"  >
+                className="relative flex flex-col gap-6 md:gap-0 md:flex-row md:items-center md:justify-between">
 
                 {/* 1. LEFT SIDE BLOCK */}
-                <div className={`w-full md:w-[45%] flex ${isLeft ? "justify-end" : "justify-start order-2 md:order-1"}`}>
+                <div className={`w-full md:w-[45%] flex justify-center ${isLeft ? "md:justify-end" : "md:justify-start"}`}>
                   {isLeft ? (
                     /* Step Card (Left) */
                     <motion.div
@@ -175,7 +175,7 @@ export default function Process() {
                       <div className="absolute -bottom-4 -left-4 w-20 h-20 opacity-35 pointer-events-none hidden md:block bg-[radial-gradient(#C8A96A_1.5px,transparent_1.5px)] bg-[size:10px_10px]" />
 
                       <div
-                        className="p-8 md:p-10 rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-6 border transition-all duration-500 shadow-2xl bg-primary text-white border-white/5 hover:border-accent/40 hover:-translate-y-1.5"
+                        className="p-6 sm:p-8 md:p-10 rounded-[1.5rem] md:rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-5 sm:gap-6 border transition-all duration-500 shadow-2xl bg-primary text-white border-white/5 hover:border-accent/40 hover:-translate-y-1.5"
                       >
                         {/* Huge outline step number */}
                         <div className="absolute right-8 top-4 font-black text-6xl md:text-7xl select-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent">
@@ -183,7 +183,7 @@ export default function Process() {
                         </div>
 
                         {/* Double bordered icon */}
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border bg-accent/10 border-accent/30 text-accent group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border bg-accent/10 border-accent/30 text-accent group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500">
                           <IconComponent className="w-6 h-6" />
                         </div>
 
@@ -192,7 +192,7 @@ export default function Process() {
                           <span className="text-[10px] text-accent uppercase font-bold tracking-[0.2em] block mb-1">
                             Step {step.num}
                           </span>
-                          <h3 className="text-2xl font-bold mb-3 font-plus-jakarta text-white">
+                          <h3 className="text-xl sm:text-2xl font-bold mb-3 font-plus-jakarta text-white">
                             {step.title}
                           </h3>
                           <p className="font-light text-sm leading-relaxed text-gray-300">
@@ -208,7 +208,7 @@ export default function Process() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.7 }}
-                      className="w-full rounded-[2rem] overflow-hidden shadow-2xl border border-accent/10 group aspect-[4/3] max-h-[320px]"
+                      className="w-full rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl border border-accent/10 group aspect-[4/3] h-56 sm:h-64 md:max-h-[320px]"
                     >
                       <img
                         src={step.image}
@@ -221,7 +221,7 @@ export default function Process() {
                 </div>
 
                 {/* 2. CENTER NODE WITH DASH CONNECTIONS */}
-                <div className="absolute left-[20px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
+                <div className="absolute left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
 
                   {/* Central Node Circle */}
                   <div className="w-8 h-8 rounded-full bg-[#FCFAF6] border-2 border-accent flex items-center justify-center shadow-lg relative">
@@ -235,7 +235,7 @@ export default function Process() {
                 </div>
 
                 {/* 3. RIGHT SIDE BLOCK */}
-                <div className={`w-full md:w-[45%] flex ${isLeft ? "justify-start order-1 md:order-2 mt-6 md:mt-0" : "justify-end order-1 md:order-2"}`}>
+                <div className={`w-full md:w-[45%] flex justify-center ${isLeft ? "md:justify-start" : "md:justify-end"} mt-0`}>
                   {isLeft ? (
                     /* Image (Right) */
                     <motion.div
@@ -265,7 +265,7 @@ export default function Process() {
                       <div className="absolute -top-4 -right-4 w-20 h-20 opacity-35 pointer-events-none hidden md:block bg-[radial-gradient(#C8A96A_1.5px,transparent_1.5px)] bg-[size:10px_10px]" />
 
                       <div
-                        className="p-8 md:p-10 rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-6 border transition-all duration-500 shadow-2xl bg-white text-primary border-accent/15 hover:border-accent/40 hover:-translate-y-1.5"
+                        className="p-6 sm:p-8 md:p-10 rounded-[1.5rem] md:rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-5 sm:gap-6 border transition-all duration-500 shadow-2xl bg-white text-primary border-accent/15 hover:border-accent/40 hover:-translate-y-1.5"
                       >
                         {/* Huge outline step number */}
                         <div className="absolute right-8 top-4 font-black text-6xl md:text-7xl select-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-accent/15 to-transparent">
@@ -273,7 +273,7 @@ export default function Process() {
                         </div>
 
                         {/* Double bordered icon */}
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border bg-secondary border-accent/20 text-accent group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500">
+                        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border bg-secondary border-accent/20 text-accent group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500">
                           <IconComponent className="w-6 h-6" />
                         </div>
 
@@ -282,7 +282,7 @@ export default function Process() {
                           <span className="text-[10px] text-accent uppercase font-bold tracking-[0.2em] block mb-1">
                             Step {step.num}
                           </span>
-                          <h3 className="text-2xl font-bold mb-3 font-plus-jakarta text-primary">
+                          <h3 className="text-xl sm:text-2xl font-bold mb-3 font-plus-jakarta text-primary">
                             {step.title}
                           </h3>
                           <p className="font-light text-sm leading-relaxed text-gray-600">
