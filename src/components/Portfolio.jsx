@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
   Search,
   MapPin,
   Calendar,
-  Compass,
+  BedDouble,
+  CalendarRange,
+  CalendarCheck2,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
@@ -27,13 +29,14 @@ const GALLERY = {
 };
 
 // A couple of short, freely-licensed sample clips so the "video" section
-// is functional out of the box. Replace `video` per project with your own
-// walkthrough/reel once you have it (mp4 works directly with <video>,
-// a YouTube/Vimeo embed URL works too — see the render note below).
+// is functional out of the box. These are short ~2-3MB ad-style clips —
+// NOT full movies — so they load fast. Replace `video` per project with
+// your own walkthrough/reel once you have it (mp4 works directly with
+// <video>, a YouTube/Vimeo embed URL works too — see the render note below).
 const SAMPLE_VIDEO_A =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
 const SAMPLE_VIDEO_B =
-  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4";
+  "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4";
 
 const PROJECTS = [
   {
@@ -44,9 +47,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_A,
     desc: "A bold, dark-themed penthouse balancing charcoal gray marble with gold-inlay profile lines and rich velvet textures.",
     location: "Mumbai",
-    designer: "Vansh",
+    bhk: "4 BHK",
     area: "4,200 Sq. Ft.",
     year: "2025",
+    startDate: "Jan 2025",
+    endDate: "Jun 2025",
   },
   {
     id: 2,
@@ -56,9 +61,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_B,
     desc: "An expansive minimalist villa using double-height glass facades, natural stone walls, and ambient cove lighting.",
     location: "Alibaug",
-    designer: "Vansh",
+    bhk: "5 BHK",
     area: "7,500 Sq. Ft.",
     year: "2024",
+    startDate: "Mar 2024",
+    endDate: "Nov 2024",
   },
   {
     id: 3,
@@ -68,9 +75,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_A,
     desc: "A premium corporate office featuring green partition walls, biophilic integrations, and customizable acoustic ceilings.",
     location: "Bangalore",
-    designer: "Vansh",
+    bhk: "Open Plan",
     area: "12,000 Sq. Ft.",
     year: "2025",
+    startDate: "Feb 2025",
+    endDate: "Aug 2025",
   },
   {
     id: 4,
@@ -80,9 +89,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_B,
     desc: "A sleek German-engineered kitchen matching high-gloss handleless cabinets, built-in cooktops, and a marble island.",
     location: "Delhi NCR",
-    designer: "Vansh",
+    bhk: "Modular Kitchen",
     area: "650 Sq. Ft.",
     year: "2025",
+    startDate: "Apr 2025",
+    endDate: "Jun 2025",
   },
   {
     id: 5,
@@ -92,9 +103,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_A,
     desc: "A warm, neutral master bedroom featuring a fluted wood accent wall, gold light sconces, and an integrated dressing room.",
     location: "Pune",
-    designer: "Vansh",
+    bhk: "1 BHK",
     area: "800 Sq. Ft.",
     year: "2024",
+    startDate: "Jun 2024",
+    endDate: "Sep 2024",
   },
   {
     id: 6,
@@ -104,9 +117,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_B,
     desc: "A luxury social living space centered around a backlit bookmatched Italian marble wall and custom modular sofas.",
     location: "Hyderabad",
-    designer: "Vansh",
+    bhk: "Open Layout",
     area: "1,200 Sq. Ft.",
     year: "2025",
+    startDate: "Jan 2025",
+    endDate: "May 2025",
   },
   {
     id: 7,
@@ -116,9 +131,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_A,
     desc: "An open-plan urban loft utilizing smart partition shelves, polished micro-concrete floors, and custom light tracks.",
     location: "Mumbai",
-    designer: "Vansh",
+    bhk: "2 BHK",
     area: "1,500 Sq. Ft.",
     year: "2024",
+    startDate: "Feb 2024",
+    endDate: "May 2024",
   },
   {
     id: 8,
@@ -128,9 +145,11 @@ const PROJECTS = [
     video: SAMPLE_VIDEO_B,
     desc: "A grand dining and formal living hall dominated by a double-ring custom gold chandelier and tall arched windows.",
     location: "Chennai",
-    designer: "Vansh",
+    bhk: "6 BHK",
     area: "8,200 Sq. Ft.",
     year: "2025",
+    startDate: "Mar 2025",
+    endDate: "Dec 2025",
   },
 ];
 
@@ -140,13 +159,19 @@ const CATEGORIES = ["All", "Apartment", "Villa", "Office", "Kitchen", "Bedroom",
 const optimized = (url, width, quality = 60) =>
   `${url.split("?")[0]}?auto=format&fit=crop&w=${width}&q=${quality}`;
 
+// Builds a srcSet so phones don't download the same bytes as a desktop monitor.
+const srcSetFor = (url, widths, quality = 60) =>
+  widths.map((w) => `${optimized(url, w, quality)} ${w}w`).join(", ");
+
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const filteredProjects =
-    activeFilter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === activeFilter);
+  const filteredProjects = useMemo(
+    () => (activeFilter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === activeFilter)),
+    [activeFilter]
+  );
 
   const openProject = (project) => {
     setSelectedProject(project);
@@ -230,8 +255,8 @@ export default function Portfolio() {
               key={cat}
               onClick={() => setActiveFilter(cat)}
               className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${activeFilter === cat
-                  ? "bg-gold-gradient text-primary shadow-md font-bold"
-                  : "bg-secondary text-gray-500 hover:bg-gray-200 hover:text-primary"
+                ? "bg-gold-gradient text-primary shadow-md font-bold"
+                : "bg-secondary text-gray-500 hover:bg-gray-200 hover:text-primary"
                 }`}
             >
               {cat}
@@ -259,6 +284,7 @@ export default function Portfolio() {
                   alt={project.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Shading Vignette */}
@@ -335,9 +361,10 @@ export default function Portfolio() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.25 }}
-                    src={optimized(selectedProject.images[activeImageIndex], 1400, 65)}
+                    src={optimized(selectedProject.images[activeImageIndex], 1100, 58)}
                     alt={`${selectedProject.name} - view ${activeImageIndex + 1}`}
                     className="w-full h-full object-cover"
+                    decoding="async"
                   />
                 </AnimatePresence>
 
@@ -375,7 +402,13 @@ export default function Portfolio() {
                         }`}
                       aria-label={`View image ${i + 1}`}
                     >
-                      <img src={optimized(img, 200, 40)} alt="" className="w-full h-full object-cover" />
+                      <img
+                        src={optimized(img, 200, 40)}
+                        alt=""
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </button>
                   ))}
                 </div>
@@ -389,7 +422,7 @@ export default function Portfolio() {
                     {selectedProject.desc}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-t border-white/10 pt-6">
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-white/5 text-accent">
                         <MapPin className="w-4 h-4" />
@@ -402,11 +435,11 @@ export default function Portfolio() {
 
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-white/5 text-accent">
-                        <Compass className="w-4 h-4" />
+                        <BedDouble className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Designer</p>
-                        <p className="text-white text-xs font-medium">{selectedProject.designer}</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Configuration</p>
+                        <p className="text-white text-xs font-medium">{selectedProject.bhk}</p>
                       </div>
                     </div>
 
@@ -429,6 +462,26 @@ export default function Portfolio() {
                         <p className="text-white text-xs font-medium">{selectedProject.year}</p>
                       </div>
                     </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-white/5 text-accent">
+                        <CalendarRange className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Start Date</p>
+                        <p className="text-white text-xs font-medium">{selectedProject.startDate}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-lg bg-white/5 text-accent">
+                        <CalendarCheck2 className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">End Date</p>
+                        <p className="text-white text-xs font-medium">{selectedProject.endDate}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -444,7 +497,7 @@ export default function Portfolio() {
                     <video
                       key={selectedProject.id}
                       controls
-                      preload="metadata"
+                      preload="none"
                       poster={optimized(selectedProject.images[0], 800, 50)}
                       className="w-full h-full object-cover"
                     >
