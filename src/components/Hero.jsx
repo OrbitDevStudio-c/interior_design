@@ -107,14 +107,14 @@ export default function Hero() {
           >
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gold-gradient text-primary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-95 shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gold-gradient text-primary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:opacity-95 shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
             >
               <span>Get Free Consultation</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => handleScrollTo("#portfolio")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-white/20 text-white font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-white/20 text-white font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:bg-white/10 transition-all duration-300 cursor-pointer"
             >
               <span>View Portfolio</span>
             </button>
