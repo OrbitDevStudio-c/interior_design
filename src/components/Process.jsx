@@ -48,7 +48,7 @@ export default function Process() {
 
   return (
     <section id="process" className="py-28 bg-[#FCFAF6] relative overflow-hidden">
-      
+
       {/* Hanging Gold Pendant Lamps (Top-Left Decor) */}
       <div className="absolute top-0 left-8 md:left-20 w-36 h-64 pointer-events-none z-10 opacity-80 hidden sm:block">
         <svg viewBox="0 0 150 250" fill="none" className="w-full h-full">
@@ -133,7 +133,7 @@ export default function Process() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        
+
         {/* Title Block */}
         <div className="text-center mb-28">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-accent/25 text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-sm">
@@ -158,9 +158,8 @@ export default function Process() {
             return (
               <div
                 key={step.num}
-                className="relative flex flex-col md:flex-row items-center justify-between"
-              >
-                
+                className="relative flex flex-col gap-12 md:gap-0 md:flex-row items-center justify-between"  >
+
                 {/* 1. LEFT SIDE BLOCK */}
                 <div className={`w-full md:w-[45%] flex ${isLeft ? "justify-end" : "justify-start order-2 md:order-1"}`}>
                   {isLeft ? (
@@ -175,7 +174,7 @@ export default function Process() {
                       {/* Grid Dot Decorative background under card */}
                       <div className="absolute -bottom-4 -left-4 w-20 h-20 opacity-35 pointer-events-none hidden md:block bg-[radial-gradient(#C8A96A_1.5px,transparent_1.5px)] bg-[size:10px_10px]" />
 
-                      <div 
+                      <div
                         className="p-8 md:p-10 rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-6 border transition-all duration-500 shadow-2xl bg-primary text-white border-white/5 hover:border-accent/40 hover:-translate-y-1.5"
                       >
                         {/* Huge outline step number */}
@@ -223,7 +222,7 @@ export default function Process() {
 
                 {/* 2. CENTER NODE WITH DASH CONNECTIONS */}
                 <div className="absolute left-[20px] md:left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
-                  
+
                   {/* Central Node Circle */}
                   <div className="w-8 h-8 rounded-full bg-[#FCFAF6] border-2 border-accent flex items-center justify-center shadow-lg relative">
                     <div className="w-3.5 h-3.5 rounded-full bg-gold-gradient" />
@@ -265,7 +264,7 @@ export default function Process() {
                       {/* Grid Dot Decorative background beside card */}
                       <div className="absolute -top-4 -right-4 w-20 h-20 opacity-35 pointer-events-none hidden md:block bg-[radial-gradient(#C8A96A_1.5px,transparent_1.5px)] bg-[size:10px_10px]" />
 
-                      <div 
+                      <div
                         className="p-8 md:p-10 rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-6 border transition-all duration-500 shadow-2xl bg-white text-primary border-accent/15 hover:border-accent/40 hover:-translate-y-1.5"
                       >
                         {/* Huge outline step number */}
