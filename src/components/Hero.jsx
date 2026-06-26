@@ -55,6 +55,7 @@ export default function Hero() {
             className="absolute inset-0 w-full h-full object-cover"
             fetchPriority={currentIndex === 0 ? "high" : "low"}
             loading="eager"
+            crossOrigin="anonymous"
           />
         </AnimatePresence>
         {/* Luxury Vignette and overlay */}
