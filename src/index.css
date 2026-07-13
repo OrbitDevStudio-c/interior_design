@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #111827;
+  --color-secondary: #F5F5F5;
+  --color-accent: #C8A96A;
+  --color-accent-hover: #B79859;
+  --color-accent-light: #FDFBF7;
+  --color-text-dark: #333333;
+  --color-luxury-gray: #1E293B;
+  
+  /* Overwrite gray-500 for WCAG AA color contrast rating (> 4.5:1) */
+  --color-gray-500: #59616D;
+  
+  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-outfit: "Outfit", sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-in: fadeIn 1s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Base Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-outfit), sans-serif;
+  color: var(--color-text-dark);
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-plus-jakarta), sans-serif;
+}
+
+/* Custom Premium Utilities */
+
+/* Luxury glassmorphism overlays */
+.glassmorphism-light {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.glassmorphism-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 169, 106, 0.15);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glassmorphism-card:hover {
+  border-color: rgba(200, 169, 106, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(200, 169, 106, 0.12);
+  transform: translateY(-4px);
+}
+
+.glassmorphism-dark {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8A96A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B79859;
+}
+
+/* Text Selection styling */
+::selection {
+  background: #C8A96A;
+  color: #FFFFFF;
+}
+
+/* Gold Gradient utilities */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #DFBA73 0%, #C8A96A 50%, #9A7B3E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #DFBA73 0%, #C8A96A 50%, #9A7B3E 100%);
+}
+
+.border-gold-gradient {
+  border-image: linear-gradient(135deg, #DFBA73 0%, #C8A96A 50%, #9A7B3E 100%) 1;
+}
+
+/* Horizontal line style in services etc. */
+.divider-gold {
+  position: relative;
+  display: inline-block;
+}
+.divider-gold::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: #C8A96A;
+}
+
+/* Timeline specific layouts */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #C8A96A;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(200, 169, 106, 0.25);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .timeline-item::before {
+    left: 20px;
+    transform: none;
+  }
+}
