@@ -40,7 +40,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[100svh] sm:h-screen w-full overflow-hidden bg-primary flex items-center justify-center">
+    <section className="relative min-h-[100svh] sm:h-screen w-full overflow-hidden bg-[#070B14] flex items-center justify-center">
       {/* Background Slideshow */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -58,8 +58,10 @@ export default function Hero() {
             crossOrigin="anonymous"
           />
         </AnimatePresence>
+        {/* Ambient Glow */}
+        <div className="ambient-glow ambient-glow-primary w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         {/* Luxury Vignette and overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-primary/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070B14] via-[#070B14]/30 to-[#070B14]/50" />
       </div>
 
       {/* Hero Content */}
@@ -70,7 +72,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full glassmorphism text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4 sm:mb-6"
+            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full glass-card text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4 sm:mb-6"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>Transforming Houses into Dream Homes</span>
@@ -84,7 +86,7 @@ export default function Hero() {
             className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] sm:leading-[1.1] mb-4 sm:mb-6 font-plus-jakarta"
           >
             Designing Beautiful <br />
-            <span className="text-gold-gradient">Spaces That Inspire</span>
+            <span className="text-premium-gradient">Spaces That Inspire</span>
           </motion.h1>
 
           {/* Short Description */}
@@ -107,14 +109,14 @@ export default function Hero() {
           >
             <button
               onClick={() => handleScrollTo("#contact")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gold-gradient text-primary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:opacity-95 shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl glass-button-primary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 cursor-pointer"
             >
               <span>Get Free Consultation</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => handleScrollTo("#portfolio")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-white/20 text-white font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl glass-button-secondary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 cursor-pointer"
             >
               <span>View Portfolio</span>
             </button>
@@ -127,10 +129,10 @@ export default function Hero() {
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-12 right-12 z-20 hidden lg:flex flex-col p-6 rounded-2xl glassmorphism border border-white/15 max-w-[280px]"
+        className="absolute bottom-12 right-12 z-20 hidden lg:flex flex-col p-6 glass-card max-w-[280px]"
       >
         <div className="flex items-center gap-4 mb-3">
-          <div className="w-12 h-12 rounded-xl bg-gold-gradient flex items-center justify-center font-extrabold text-primary text-xl shadow-lg">
+          <div className="w-12 h-12 rounded-xl bg-premium-gradient flex items-center justify-center font-extrabold text-white text-xl shadow-lg border border-white/10">
             5+
           </div>
           <div>

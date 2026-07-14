@@ -37,21 +37,21 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-24 bg-white relative overflow-hidden">
+    <section id="faq" className="py-24 bg-[#070B14] relative overflow-hidden">
       {/* Decorative Blur Spheres */}
-      <div className="absolute right-0 bottom-0 w-72 h-72 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="ambient-glow ambient-glow-primary w-[600px] h-[600px] right-0 bottom-0" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         
         {/* Title */}
-        <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
+        <div className="text-center mb-16 relative z-10">
+          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-premium">
             FAQ
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-4 font-plus-jakarta">
             Inquiries Answered
           </h2>
-          <p className="text-gray-500 font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
+          <p className="text-[#A9B5CF] font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
             Have questions about budgets, timelines, or our process? We have compiled the most common queries below.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function FAQ() {
             return (
               <div
                 key={idx}
-                className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm bg-secondary/20 hover:border-accent/20 transition-all duration-300"
+                className="glass-card overflow-hidden hover:border-white/10 transition-all duration-300"
               >
                 {/* Header/Question Trigger */}
                 <button
@@ -72,15 +72,15 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-4 pr-4">
-                    <HelpCircle className={`w-5 h-5 shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-gray-400'}`} />
-                    <span className="text-sm md:text-base font-bold text-primary font-plus-jakarta">
+                    <HelpCircle className={`w-5 h-5 shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-[#7F8CA8]'}`} />
+                    <span className="text-sm md:text-base font-bold text-white font-plus-jakarta">
                       {faq.question}
                     </span>
                   </div>
                   
                   {/* Indicator Icon */}
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
-                    isOpen ? 'border-accent bg-accent text-primary' : 'border-gray-200 text-gray-400'
+                    isOpen ? 'border-accent bg-accent text-white' : 'border-white/10 text-[#7F8CA8]'
                   }`}>
                     {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                   </div>
@@ -96,8 +96,8 @@ export default function FAQ() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-0 md:px-8 md:pb-6 pr-12 border-t border-gray-100/50">
-                        <p className="text-gray-500 font-light text-xs md:text-sm leading-relaxed pt-4">
+                      <div className="px-6 pb-6 pt-0 md:px-8 md:pb-6 pr-12 border-t border-white/5">
+                        <p className="text-[#A9B5CF] font-light text-xs md:text-sm leading-relaxed pt-4">
                           {faq.answer}
                         </p>
                       </div>

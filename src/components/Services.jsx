@@ -79,22 +79,22 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="py-24 bg-secondary/50 relative overflow-hidden">
+    <section id="services" className="py-24 bg-[#101827] relative overflow-hidden">
       {/* Decorative Blur Spheres */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="ambient-glow ambient-glow-primary w-[800px] h-[800px] top-1/3 left-[-200px]" />
+      <div className="ambient-glow ambient-glow-accent w-[800px] h-[800px] bottom-1/3 right-[-200px]" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Title Block */}
         <div className="text-center mb-20">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
+          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-premium">
             Our Services
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-4 font-plus-jakarta">
             Bespoke Design Expertise
           </h2>
-          <p className="text-gray-500 font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
+          <p className="text-[#A9B5CF] font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
             From layout architectural design to raw custom finishing, we manage the entire project lifecycle for elite spaces.
           </p>
         </div>
@@ -113,21 +113,21 @@ export default function Services() {
               <motion.div
                 key={index}
                 variants={cardVariants}
-                className="glassmorphism-card p-8 rounded-2xl flex flex-col justify-between group cursor-pointer"
+                className="glass-card p-8 flex flex-col justify-between group cursor-pointer"
               >
                 <div>
                   {/* Icon Wrapper */}
-                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/25 flex items-center justify-center text-accent mb-6 group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500 shadow-sm">
+                  <div className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center text-accent mb-6 group-hover:bg-premium-gradient group-hover:text-white transition-all duration-500 shadow-sm border border-white/5">
                     <IconComponent className="w-6 h-6 transition-transform duration-500 group-hover:scale-110" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-primary mb-3 font-plus-jakarta group-hover:text-accent transition-colors duration-300">
+                  <h3 className="text-lg font-bold text-white mb-3 font-plus-jakarta group-hover:text-accent transition-colors duration-300">
                     {service.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-500 font-light text-sm leading-relaxed">
+                  <p className="text-[#A9B5CF] font-light text-sm leading-relaxed">
                     {service.desc}
                   </p>
                 </div>

@@ -77,21 +77,21 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white relative overflow-hidden">
+    <section id="contact" className="py-24 bg-[#0C1220] relative overflow-hidden">
       {/* Decorative Blur Spheres */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="ambient-glow ambient-glow-primary w-[800px] h-[800px] top-1/4 left-[-400px]" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Title */}
-        <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
+        <div className="text-center mb-16 relative z-10">
+          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-premium">
             Contact Us
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-4 font-plus-jakarta">
             Commence Your Transformation
           </h2>
-          <p className="text-gray-500 font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
+          <p className="text-[#A9B5CF] font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
             Ready to design your dream space? Fill out the consultation request below, or connect with us instantly.
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function Contact() {
           
           {/* Form Column (7 Cols) */}
           <div className="lg:col-span-7 flex">
-            <div className="glassmorphism-card p-6 md:p-10 rounded-3xl w-full border border-gray-100 shadow-xl relative flex flex-col justify-center">
+            <div className="glass-card p-6 md:p-10 rounded-3xl w-full shadow-xl relative flex flex-col justify-center">
               
               <AnimatePresence mode="wait">
                 {!submitted ? (
@@ -123,7 +123,7 @@ export default function Contact() {
                     {/* Name & Phone Inputs */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="name" className="text-xs uppercase tracking-wider text-gray-500 font-bold">
+                        <label htmlFor="name" className="text-xs uppercase tracking-wider text-[#A9B5CF] font-bold">
                           Full Name *
                         </label>
                         <input
@@ -133,12 +133,12 @@ export default function Contact() {
                           value={formData.name}
                           onChange={handleInputChange}
                           placeholder="Ananya Sharma"
-                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-primary"
+                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-[#070B14]/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-white placeholder-gray-600"
                         />
                       </div>
 
                       <div className="space-y-2">
-                        <label htmlFor="phone" className="text-xs uppercase tracking-wider text-gray-500 font-bold">
+                        <label htmlFor="phone" className="text-xs uppercase tracking-wider text-[#A9B5CF] font-bold">
                           Phone Number *
                         </label>
                         <input
@@ -148,7 +148,7 @@ export default function Contact() {
                           value={formData.phone}
                           onChange={handleInputChange}
                           placeholder="+91 98765 43210"
-                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-primary"
+                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-[#070B14]/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-white placeholder-gray-600"
                         />
                       </div>
                     </div>
@@ -156,7 +156,7 @@ export default function Contact() {
                     {/* Email & Project Type */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label htmlFor="email" className="text-xs uppercase tracking-wider text-gray-500 font-bold">
+                        <label htmlFor="email" className="text-xs uppercase tracking-wider text-[#A9B5CF] font-bold">
                           Email Address *
                         </label>
                         <input
@@ -166,12 +166,12 @@ export default function Contact() {
                           value={formData.email}
                           onChange={handleInputChange}
                           placeholder="ananya@example.com"
-                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-primary"
+                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-[#070B14]/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-white placeholder-gray-600"
                         />
                       </div>
 
                       <div className="space-y-2">
-                        <label htmlFor="projectType" className="text-xs uppercase tracking-wider text-gray-500 font-bold">
+                        <label htmlFor="projectType" className="text-xs uppercase tracking-wider text-[#A9B5CF] font-bold">
                           Project Type
                         </label>
                         <select
@@ -179,7 +179,7 @@ export default function Contact() {
                           name="projectType"
                           value={formData.projectType}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none bg-white transition-all text-sm text-primary cursor-pointer"
+                          className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-accent focus:ring-1 focus:ring-accent outline-none bg-[#070B14] transition-all text-sm text-white cursor-pointer"
                         >
                           {projectTypes.map((type) => (
                             <option key={type} value={type}>
@@ -192,7 +192,7 @@ export default function Contact() {
 
                     {/* Budget Selection Pills */}
                     <div className="space-y-3">
-                      <label className="text-xs uppercase tracking-wider text-gray-500 font-bold block">
+                      <label className="text-xs uppercase tracking-wider text-[#A9B5CF] font-bold block">
                         Estimated Budget Range
                       </label>
                       <div className="flex flex-wrap gap-2">
@@ -203,8 +203,8 @@ export default function Contact() {
                             onClick={() => handleBudgetSelect(b)}
                             className={`px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wider transition-all duration-300 cursor-pointer ${
                               formData.budget === b
-                                ? "bg-gold-gradient text-primary shadow-md font-bold"
-                                : "bg-gray-100 text-gray-500 hover:bg-gray-200"
+                                ? "glass-button-primary border-white/10"
+                                : "glass-button-secondary text-[#A9B5CF] hover:text-white border-white/5"
                             }`}
                           >
                             {b}
@@ -215,7 +215,7 @@ export default function Contact() {
 
                     {/* Message */}
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-xs uppercase tracking-wider text-gray-500 font-bold">
+                      <label htmlFor="message" className="text-xs uppercase tracking-wider text-[#A9B5CF] font-bold">
                         Describe Your Dream Space
                       </label>
                       <textarea
@@ -225,14 +225,14 @@ export default function Contact() {
                         onChange={handleInputChange}
                         rows="4"
                         placeholder="I would love to remodel my 3BHK living room with bespoke furniture, custom profile lighting, and marble backings..."
-                        className="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-primary resize-none"
+                        className="w-full px-4 py-3.5 rounded-xl border border-white/10 bg-[#070B14]/50 focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm text-white placeholder-gray-600 resize-none"
                       />
                     </div>
 
                     {/* Submit Button */}
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-xl bg-gold-gradient text-primary font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:opacity-95 shadow-lg transition-all hover:scale-[1.01] cursor-pointer"
+                      className="w-full py-4 rounded-xl glass-button-primary font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:opacity-95 shadow-lg transition-all hover:scale-[1.01] cursor-pointer"
                     >
                       <span>Request Free Consultation</span>
                       <Send className="w-4 h-4" />
@@ -250,11 +250,11 @@ export default function Contact() {
                       <CheckCircle2 className="w-8 h-8" />
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-2xl font-bold text-primary font-plus-jakarta">
+                      <h3 className="text-2xl font-bold text-white font-plus-jakarta">
                         Consultation Requested!
                       </h3>
-                      <p className="text-gray-500 font-light text-sm max-w-sm mx-auto leading-relaxed">
-                        Thank you, <span className="font-semibold text-primary">{formData.name}</span>. Lead Designer Vansh is looking forward to shaping your design concept.
+                      <p className="text-[#A9B5CF] font-light text-sm max-w-sm mx-auto leading-relaxed">
+                        Thank you, <span className="font-semibold text-white">{formData.name}</span>. Lead Designer Vansh is looking forward to shaping your design concept.
                       </p>
                       <p className="text-xs text-accent tracking-wider font-semibold uppercase mt-1">
                         We will contact you within 24 hours.
@@ -263,7 +263,7 @@ export default function Contact() {
 
                     <button
                       onClick={resetForm}
-                      className="px-6 py-2.5 rounded-xl border border-gray-200 text-gray-500 hover:bg-gray-100 text-xs font-semibold tracking-wider transition-colors cursor-pointer"
+                      className="px-6 py-2.5 rounded-xl border border-white/10 text-[#A9B5CF] hover:bg-white/5 hover:text-white text-xs font-semibold tracking-wider transition-colors cursor-pointer"
                     >
                       Submit Another Query
                     </button>
@@ -279,7 +279,7 @@ export default function Contact() {
             
             {/* Cards Info */}
             <div className="space-y-6 text-left">
-              <h3 className="text-xl font-bold text-primary font-plus-jakarta border-b border-gray-100 pb-3">
+              <h3 className="text-xl font-bold text-white font-plus-jakarta border-b border-white/10 pb-3">
                 Office Information
               </h3>
 
@@ -289,8 +289,8 @@ export default function Contact() {
                   <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-xs uppercase tracking-wider mb-1">Our Studio Address</h4>
-                  <p className="text-gray-500 font-light text-sm leading-relaxed">
+                  <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Our Studio Address</h4>
+                  <p className="text-[#A9B5CF] font-light text-sm leading-relaxed">
                     Level 4, Executive Plaza, Bandra West,<br />Mumbai, Maharashtra 400050
                   </p>
                 </div>
@@ -302,8 +302,8 @@ export default function Contact() {
                   <Mail className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-xs uppercase tracking-wider mb-1">Email Enquiries</h4>
-                  <a href="mailto:hello@auradesignstudio.in" className="text-gray-500 font-light text-sm hover:text-accent transition-colors">
+                  <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Email Enquiries</h4>
+                  <a href="mailto:hello@auradesignstudio.in" className="text-[#A9B5CF] font-light text-sm hover:text-accent transition-colors">
                     hello@auradesignstudio.in
                   </a>
                 </div>
@@ -315,8 +315,8 @@ export default function Contact() {
                   <Phone className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-primary text-xs uppercase tracking-wider mb-1">Call Booking</h4>
-                  <a href="tel:+919876543210" className="text-gray-500 font-light text-sm hover:text-accent transition-colors">
+                  <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-1">Call Booking</h4>
+                  <a href="tel:+919876543210" className="text-[#A9B5CF] font-light text-sm hover:text-accent transition-colors">
                     +91 98765 43210
                   </a>
                 </div>
@@ -326,7 +326,7 @@ export default function Contact() {
               <div className="grid grid-cols-2 gap-4 pt-4">
                 <a
                   href="tel:+919876543210"
-                  className="py-3.5 rounded-xl border border-accent text-accent font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-accent hover:text-primary transition-all duration-300 shadow-sm"
+                  className="py-3.5 rounded-xl border border-accent text-accent font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-accent hover:text-white transition-all duration-300 shadow-sm"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Call Us</span>
@@ -336,7 +336,7 @@ export default function Contact() {
                   href="https://wa.me/919876543210?text=Hi%20AURA%20Design%20Studio%2C%20I%20would%20like%20to%20schedule%20a%20consultation%20with%20designer%20Vansh."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="py-3.5 rounded-xl bg-green-500 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-sm"
+                  className="py-3.5 rounded-xl border border-[#25D366] text-[#25D366] font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:bg-[#25D366] hover:text-white transition-all duration-300 shadow-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>WhatsApp</span>
@@ -345,14 +345,14 @@ export default function Contact() {
             </div>
 
             {/* Stylized Google Map Placeholder */}
-            <div className="rounded-2xl overflow-hidden h-[240px] md:h-[280px] bg-primary relative border border-gray-100 shadow-md group mt-6">
+            <div className="rounded-2xl overflow-hidden h-[240px] md:h-[280px] bg-[#070B14] relative border border-white/10 shadow-md group mt-6">
               {/* Slate luxury background */}
               <div 
                 className="absolute inset-0 bg-cover bg-center opacity-40 select-none grayscale contrast-125"
                 style={{ backgroundImage: `url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=40')` }}
               />
               {/* Overlay shading */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/50 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/95 via-[#070B14]/50 to-transparent" />
 
               {/* Golden Marker and Details */}
               <div className="absolute inset-0 flex flex-col justify-between p-6 text-left">
@@ -366,7 +366,7 @@ export default function Contact() {
 
                 {/* Golden Pin indicator center */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-                  <div className="w-8 h-8 rounded-full bg-gold-gradient flex items-center justify-center text-primary shadow-lg border border-white/20 scale-100 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-8 h-8 rounded-full bg-premium-gradient flex items-center justify-center text-white shadow-lg border border-white/20 scale-100 group-hover:scale-110 transition-transform duration-300">
                     <MapPin className="w-4.5 h-4.5" />
                   </div>
                   <div className="w-3 h-1 bg-black/40 rounded-full filter blur-[1px] mt-1" />
@@ -384,7 +384,7 @@ export default function Contact() {
                     href="https://maps.google.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-white text-primary text-[10px] uppercase font-bold tracking-wider rounded-lg shadow-md hover:bg-accent hover:text-primary transition-all duration-300 cursor-pointer"
+                    className="px-4 py-2 glass-button-secondary text-white text-[10px] uppercase font-bold tracking-wider rounded-lg shadow-md hover:bg-accent hover:text-white transition-all duration-300 cursor-pointer"
                   >
                     Get Directions
                   </a>

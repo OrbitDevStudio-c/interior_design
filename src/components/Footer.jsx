@@ -16,9 +16,9 @@ export default function Footer({ companyName = "AURA" }) {
   };
 
   return (
-    <footer className="bg-primary text-gray-400 pt-20 pb-8 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-[#09111D] text-[#A9B5CF] pt-20 pb-8 border-t border-white/5 relative overflow-hidden">
       {/* Subtle overlay accent */}
-      <div className="absolute right-0 bottom-0 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="ambient-glow ambient-glow-primary w-[800px] h-[800px] right-[-400px] bottom-[-400px]" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-white/5 relative z-10 text-left">
 
@@ -29,14 +29,14 @@ export default function Footer({ companyName = "AURA" }) {
             onClick={(e) => handleScrollTo(e, "#")}
             className="flex flex-col tracking-wider text-white select-none group"
           >
-            <span className="text-2xl md:text-3xl font-extrabold text-gold-gradient font-plus-jakarta flex items-center gap-1">
+            <span className="text-2xl md:text-3xl font-extrabold text-premium-gradient font-plus-jakarta flex items-center gap-1">
               {companyName}
             </span>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-gray-400 group-hover:text-accent transition-colors duration-300">
+            <span className="text-[9px] uppercase tracking-[0.3em] text-[#7F8CA8] group-hover:text-accent transition-colors duration-300">
               Design Studio
             </span>
           </a>
-          <p className="text-gray-400 text-sm font-light leading-relaxed">
+          <p className="text-[#A9B5CF] text-sm font-light leading-relaxed">
             AURA Design Studio designs bespoke, luxury architectural environments. We blend fine European aesthetics with absolute project transparency to hand over structural masterpieces.
           </p>
 
@@ -79,7 +79,7 @@ export default function Footer({ companyName = "AURA" }) {
                   href={soc.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:bg-gold-gradient hover:text-primary transition-all duration-300 shadow-sm"
+                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#A9B5CF] hover:bg-premium-gradient hover:text-white transition-all duration-300 shadow-sm"
                   aria-label="Social Link"
                 >
                   <Icon className="w-4 h-4" />
@@ -172,7 +172,7 @@ export default function Footer({ companyName = "AURA" }) {
       </div>
 
       {/* Footer Bottom copyright and developer credits */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 relative z-10 gap-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#7F8CA8] relative z-10 gap-4">
         <div>
           &copy; {new Date().getFullYear()} OrbitDevStudio. All Rights Reserved.
         </div>
