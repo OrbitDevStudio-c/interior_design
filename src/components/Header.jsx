@@ -51,7 +51,7 @@ export default function Header({ companyName = "AURA" }) {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "glass-nav py-4 shadow-lg"
+          ? "bg-primary/90 shadow-lg backdrop-blur-md border-b border-white/5 py-4"
           : "bg-transparent py-6"
           }`}
       >
@@ -62,7 +62,7 @@ export default function Header({ companyName = "AURA" }) {
             onClick={(e) => handleLinkClick(e, "#")}
             className="flex flex-col tracking-wider text-white select-none group"
           >
-            <span className="text-2xl md:text-3xl font-extrabold text-premium-gradient font-plus-jakarta flex items-center gap-1">
+            <span className="text-2xl md:text-3xl font-extrabold text-gold-gradient font-plus-jakarta flex items-center gap-1">
               {companyName}
             </span>
             <span className="text-[9px] uppercase tracking-[0.3em] text-gray-400 group-hover:text-accent transition-colors duration-300">
@@ -90,7 +90,7 @@ export default function Header({ companyName = "AURA" }) {
             <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, "#contact")}
-              className="px-6 py-2.5 rounded-full border border-accent/40 text-accent font-medium text-sm flex items-center gap-2 hover:bg-accent hover:text-white transition-all duration-300 shadow-sm"
+              className="px-6 py-2.5 rounded-full border border-accent/40 text-accent font-medium text-sm flex items-center gap-2 hover:bg-accent hover:text-primary transition-all duration-300 shadow-sm"
             >
               <Phone className="w-4 h-4" />
               <span>Get Consultation</span>
@@ -125,7 +125,7 @@ export default function Header({ companyName = "AURA" }) {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-[#0C1220] border-l border-white/10 p-8 flex flex-col justify-between"
+              className="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-primary border-l border-white/10 p-8 flex flex-col justify-between"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="pt-20">
@@ -159,7 +159,7 @@ export default function Header({ companyName = "AURA" }) {
                   <a
                     href="#contact"
                     onClick={(e) => handleLinkClick(e, "#contact")}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl glass-button-primary font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-lg"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gold-gradient text-primary font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-lg"
                   >
                     <Phone className="w-4 h-4" />
                     <span>Free Consultation</span>

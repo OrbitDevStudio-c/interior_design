@@ -234,19 +234,17 @@ export default function Portfolio() {
   }, [selectedProject]);
 
   return (
-    <section id="portfolio" className="py-24 bg-[#070B14] relative overflow-hidden">
-      {/* Ambient Glow */}
-      <div className="ambient-glow ambient-glow-primary w-[800px] h-[800px] top-0 right-[-200px]" />
+    <section id="portfolio" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Title */}
-        <div className="text-center mb-16 relative z-10">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-premium">
+        <div className="text-center mb-16">
+          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
             Our Works
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-4 font-plus-jakarta">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
             Masterpieces of Living Art
           </h2>
-          <p className="text-[#A9B5CF] font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
+          <p className="text-gray-500 font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
             Explore a curated selection of our award-winning interior architecture and turnkey design projects.
           </p>
         </div>
@@ -258,8 +256,8 @@ export default function Portfolio() {
               key={cat}
               onClick={() => setActiveFilter(cat)}
               className={`px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 cursor-pointer ${activeFilter === cat
-                ? "glass-button-primary border-white/10"
-                : "glass-button-secondary text-[#A9B5CF] hover:text-white"
+                ? "bg-gold-gradient text-primary shadow-md font-bold"
+                : "bg-secondary text-gray-500 hover:bg-gray-200 hover:text-primary"
                 }`}
             >
               {cat}
@@ -278,7 +276,7 @@ export default function Portfolio() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.4 }}
                 key={project.id}
-                className="group relative h-[350px] rounded-2xl overflow-hidden shadow-lg border border-white/5 cursor-pointer glass-card"
+                className="group relative h-[350px] rounded-2xl overflow-hidden shadow-lg border border-gray-100 cursor-pointer"
                 onClick={() => openProject(project)}
               >
                 {/* Project Image */}
@@ -291,7 +289,7 @@ export default function Portfolio() {
                 />
 
                 {/* Shading Vignette */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/95 via-[#070B14]/40 to-transparent opacity-90 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent opacity-90 transition-opacity duration-300" />
 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 p-6 flex flex-col justify-end">
@@ -333,11 +331,11 @@ export default function Portfolio() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 24 }}
               transition={{ type: "spring", damping: 28 }}
-              className="min-h-screen w-full max-w-6xl mx-auto bg-[#0C1220] shadow-2xl border-x border-white/5"
+              className="min-h-screen w-full max-w-6xl mx-auto bg-primary shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Sticky Page Header */}
-              <div className="sticky top-0 z-20 flex items-center justify-between gap-4 px-6 md:px-10 py-5 bg-[#0C1220]/95 backdrop-blur-md border-b border-white/10">
+              <div className="sticky top-0 z-20 flex items-center justify-between gap-4 px-6 md:px-10 py-5 bg-primary/95 backdrop-blur-md border-b border-white/10">
                 <div>
                   <span className="inline-block px-3 py-1 rounded-full bg-accent/15 border border-accent/25 text-accent text-[10px] uppercase font-bold tracking-widest mb-1">
                     {selectedProject.category}
@@ -396,7 +394,7 @@ export default function Portfolio() {
 
               {/* Thumbnail Strip */}
               {selectedProject.images.length > 1 && (
-                <div className="flex gap-3 px-6 md:px-10 py-4 overflow-x-auto bg-[#070B14]/60">
+                <div className="flex gap-3 px-6 md:px-10 py-4 overflow-x-auto bg-primary/60">
                   {selectedProject.images.map((img, i) => (
                     <button
                       key={i}
@@ -431,7 +429,7 @@ export default function Portfolio() {
                         <MapPin className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#8F9CB5] uppercase tracking-widest font-semibold">Location</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Location</p>
                         <p className="text-white text-xs font-medium">{selectedProject.location}</p>
                       </div>
                     </div>
@@ -441,7 +439,7 @@ export default function Portfolio() {
                         <BedDouble className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#8F9CB5] uppercase tracking-widest font-semibold">Configuration</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Configuration</p>
                         <p className="text-white text-xs font-medium">{selectedProject.bhk}</p>
                       </div>
                     </div>
@@ -451,7 +449,7 @@ export default function Portfolio() {
                         <Search className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#8F9CB5] uppercase tracking-widest font-semibold">Area</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Area</p>
                         <p className="text-white text-xs font-medium">{selectedProject.area}</p>
                       </div>
                     </div>
@@ -461,7 +459,7 @@ export default function Portfolio() {
                         <Calendar className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#8F9CB5] uppercase tracking-widest font-semibold">Year</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Year</p>
                         <p className="text-white text-xs font-medium">{selectedProject.year}</p>
                       </div>
                     </div>
@@ -471,7 +469,7 @@ export default function Portfolio() {
                         <CalendarRange className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#8F9CB5] uppercase tracking-widest font-semibold">Start Date</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">Start Date</p>
                         <p className="text-white text-xs font-medium">{selectedProject.startDate}</p>
                       </div>
                     </div>
@@ -481,7 +479,7 @@ export default function Portfolio() {
                         <CalendarCheck2 className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="text-[10px] text-[#8F9CB5] uppercase tracking-widest font-semibold">End Date</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest font-semibold">End Date</p>
                         <p className="text-white text-xs font-medium">{selectedProject.endDate}</p>
                       </div>
                     </div>
@@ -515,10 +513,11 @@ export default function Portfolio() {
                 </div>
               </div>
 
+              {/* CTA */}
               <div className="px-6 md:px-10 pb-10">
                 <button
                   onClick={handleInquireClick}
-                  className="w-full py-4 rounded-xl glass-button-primary font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 rounded-xl bg-gold-gradient text-primary font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 hover:opacity-95 shadow-md hover:scale-[1.01] transition-all cursor-pointer"
                 >
                   <span>Inquire About Similar Design</span>
                   <ArrowRight className="w-4 h-4" />

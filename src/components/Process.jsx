@@ -47,9 +47,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="py-20 sm:py-24 md:py-28 bg-[#0C1220] relative overflow-hidden">
-      {/* Ambient Glow */}
-      <div className="ambient-glow ambient-glow-primary w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <section id="process" className="py-20 sm:py-24 md:py-28 bg-[#FCFAF6] relative overflow-hidden">
 
       {/* Hanging Gold Pendant Lamps (Top-Left Decor) */}
       <div className="absolute top-0 left-8 md:left-20 w-36 h-64 pointer-events-none z-10 opacity-80 hidden sm:block">
@@ -137,15 +135,15 @@ export default function Process() {
       <div className="max-w-7xl mx-auto px-3 sm:px-6 md:px-12 relative z-10">
 
         {/* Title Block */}
-        <div className="text-center mb-10 sm:mb-14 md:mb-20 lg:mb-28 relative z-10">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-white/10 text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-sm">
+        <div className="text-center mb-10 sm:mb-14 md:mb-20 lg:mb-28">
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-accent/25 text-xs font-semibold uppercase tracking-[0.2em] text-accent shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Our Journey</span>
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mt-5 sm:mt-6 font-plus-jakarta">
-            The Path to <span className="text-premium-gradient">Perfection</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight mt-5 sm:mt-6 font-plus-jakarta">
+            The Path to <span className="text-gold-gradient">Perfection</span>
           </h2>
-          <p className="text-[#A9B5CF] font-light mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-2 sm:px-0">
+          <p className="text-gray-500 font-light mt-3 sm:mt-4 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed px-2 sm:px-0">
             How we transform your architectural vision into a curated structural reality, guided by modern luxury design principles.
           </p>
         </div>
@@ -177,7 +175,7 @@ export default function Process() {
                       <div className="absolute -bottom-4 -left-4 w-20 h-20 opacity-35 pointer-events-none hidden md:block bg-[radial-gradient(#C8A96A_1.5px,transparent_1.5px)] bg-[size:10px_10px]" />
 
                       <div
-                        className="p-5 sm:p-6 md:p-8 lg:p-10 w-full relative flex flex-col md:flex-row items-start gap-4 sm:gap-5 md:gap-6 border transition-all duration-500 shadow-2xl glass-card text-white hover:border-accent/40 hover:-translate-y-1.5"
+                        className="p-5 sm:p-6 md:p-8 lg:p-10 rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-4 sm:gap-5 md:gap-6 border transition-all duration-500 shadow-2xl bg-primary text-white border-white/5 hover:border-accent/40 hover:-translate-y-1.5"
                       >
                         {/* Huge outline step number */}
                         <div className="absolute right-4 sm:right-6 md:right-8 top-3 sm:top-4 font-black text-5xl sm:text-6xl md:text-7xl select-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent">
@@ -185,7 +183,7 @@ export default function Process() {
                         </div>
 
                         {/* Double bordered icon */}
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border glass-card border-accent/30 text-accent group-hover:bg-premium-gradient group-hover:text-white transition-all duration-500">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border bg-accent/10 border-accent/30 text-accent group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500">
                           <IconComponent className="w-6 h-6" />
                         </div>
 
@@ -197,7 +195,7 @@ export default function Process() {
                           <h3 className="text-xl sm:text-2xl font-bold mb-3 font-plus-jakarta text-white">
                             {step.title}
                           </h3>
-                          <p className="font-light text-sm sm:text-[15px] leading-relaxed text-[#A9B5CF]">
+                          <p className="font-light text-sm sm:text-[15px] leading-relaxed text-gray-300">
                             {step.desc}
                           </p>
                         </div>
@@ -210,7 +208,7 @@ export default function Process() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.7 }}
-                      className="w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl border border-white/5 group aspect-[4/3] h-52 sm:h-56 md:h-64 lg:max-h-[320px] max-w-[420px] mx-auto md:max-w-none"
+                      className="w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl border border-accent/10 group aspect-[4/3] h-52 sm:h-56 md:h-64 lg:max-h-[320px] max-w-[420px] mx-auto md:max-w-none"
                     >
                       <img
                         src={step.image}
@@ -226,8 +224,8 @@ export default function Process() {
                 <div className="absolute left-1/2 top-10 md:top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
 
                   {/* Central Node Circle */}
-                  <div className="w-8 h-8 rounded-full bg-[#121B2D] border-2 border-accent flex items-center justify-center shadow-lg relative">
-                    <div className="w-3.5 h-3.5 rounded-full bg-premium-gradient" />
+                  <div className="w-8 h-8 rounded-full bg-[#FCFAF6] border-2 border-accent flex items-center justify-center shadow-lg relative">
+                    <div className="w-3.5 h-3.5 rounded-full bg-gold-gradient" />
                   </div>
 
                   {/* Left Dashed Horizontal Connector */}
@@ -245,7 +243,7 @@ export default function Process() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.7 }}
-                      className="w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl border border-white/5 group aspect-[4/3] h-52 sm:h-56 md:h-64 lg:max-h-[320px] max-w-[420px] mx-auto md:max-w-none"
+                      className="w-full rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] overflow-hidden shadow-2xl border border-accent/10 group aspect-[4/3] h-52 sm:h-56 md:h-64 lg:max-h-[320px] max-w-[420px] mx-auto md:max-w-none"
                     >
                       <img
                         src={step.image}
@@ -267,7 +265,7 @@ export default function Process() {
                       <div className="absolute -top-4 -right-4 w-20 h-20 opacity-35 pointer-events-none hidden md:block bg-[radial-gradient(#C8A96A_1.5px,transparent_1.5px)] bg-[size:10px_10px]" />
 
                       <div
-                        className="p-5 sm:p-6 md:p-8 lg:p-10 w-full relative flex flex-col md:flex-row items-start gap-4 sm:gap-5 md:gap-6 border transition-all duration-500 shadow-2xl glass-card text-white hover:border-accent/40 hover:-translate-y-1.5"
+                        className="p-5 sm:p-6 md:p-8 lg:p-10 rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem] w-full relative flex flex-col md:flex-row items-start gap-4 sm:gap-5 md:gap-6 border transition-all duration-500 shadow-2xl bg-white text-primary border-accent/15 hover:border-accent/40 hover:-translate-y-1.5"
                       >
                         {/* Huge outline step number */}
                         <div className="absolute right-4 sm:right-6 md:right-8 top-3 sm:top-4 font-black text-5xl sm:text-6xl md:text-7xl select-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-accent/15 to-transparent">
@@ -275,7 +273,7 @@ export default function Process() {
                         </div>
 
                         {/* Double bordered icon */}
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border glass-card border-accent/20 text-accent group-hover:bg-premium-gradient group-hover:text-white transition-all duration-500">
+                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center shrink-0 shadow-lg border bg-secondary border-accent/20 text-accent group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500">
                           <IconComponent className="w-6 h-6" />
                         </div>
 
@@ -284,10 +282,10 @@ export default function Process() {
                           <span className="text-[10px] text-accent uppercase font-bold tracking-[0.2em] block mb-1">
                             Step {step.num}
                           </span>
-                          <h3 className="text-xl sm:text-2xl font-bold mb-3 font-plus-jakarta text-white">
+                          <h3 className="text-xl sm:text-2xl font-bold mb-3 font-plus-jakarta text-primary">
                             {step.title}
                           </h3>
-                          <p className="font-light text-sm sm:text-[15px] leading-relaxed text-[#A9B5CF]">
+                          <p className="font-light text-sm sm:text-[15px] leading-relaxed text-gray-600">
                             {step.desc}
                           </p>
                         </div>

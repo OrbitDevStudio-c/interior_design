@@ -56,20 +56,18 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="py-24 bg-[#101827] relative overflow-hidden">
-      {/* Ambient Glow */}
-      <div className="ambient-glow ambient-glow-accent w-[800px] h-[800px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <section id="testimonials" className="py-24 bg-secondary/50 relative overflow-hidden">
       {/* Decorative background shape */}
       <div className="absolute top-10 right-10 w-96 h-96 rounded-full border-2 border-accent/5 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         
         {/* Title */}
-        <div className="text-center mb-16 relative z-10">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-premium">
+        <div className="text-center mb-16">
+          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
             Testimonials
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mt-4 font-plus-jakarta">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
             Resonating Approval
           </h2>
         </div>
@@ -83,7 +81,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.5 }}
-              className="glass-card p-8 md:p-12 rounded-3xl relative shadow-xl"
+              className="glassmorphism-card p-8 md:p-12 rounded-3xl relative border border-gray-100 shadow-xl"
             >
               {/* Quote Icon overlay */}
               <div className="absolute right-8 top-8 text-accent/15 select-none pointer-events-none">
@@ -98,8 +96,8 @@ export default function Testimonials() {
                     alt={TESTIMONIALS[activeIndex].name}
                     className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-accent shadow-md"
                   />
-                  <div className="absolute -bottom-2 -right-2 bg-premium-gradient text-white p-1.5 rounded-lg shadow-md border border-white/10">
-                    <Quote className="w-3 h-3 text-white" />
+                  <div className="absolute -bottom-2 -right-2 bg-gold-gradient text-primary p-1.5 rounded-lg shadow-md">
+                    <Quote className="w-3 h-3 text-primary" />
                   </div>
                 </div>
 
@@ -113,16 +111,16 @@ export default function Testimonials() {
                   </div>
 
                   {/* Review Text */}
-                  <p className="text-[#F3F6FF] font-light text-base md:text-lg italic leading-relaxed">
+                  <p className="text-gray-600 font-light text-base md:text-lg italic leading-relaxed">
                     "{TESTIMONIALS[activeIndex].review}"
                   </p>
 
                   {/* Meta details */}
                   <div className="pt-2">
-                    <h4 className="text-white font-bold font-plus-jakarta text-sm">
+                    <h4 className="text-primary font-bold font-plus-jakarta text-sm">
                       {TESTIMONIALS[activeIndex].name}
                     </h4>
-                    <p className="text-xs text-[#A9B5CF] font-light">
+                    <p className="text-xs text-gray-500 font-light">
                       {TESTIMONIALS[activeIndex].role} &bull; {TESTIMONIALS[activeIndex].location}
                     </p>
                   </div>
@@ -136,7 +134,7 @@ export default function Testimonials() {
         <div className="flex items-center justify-between mt-8 px-4">
           <button
             onClick={handlePrev}
-            className="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-white shadow-sm hover:border-white/20 transition-all duration-300 cursor-pointer"
+            className="w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-primary shadow-sm hover:bg-gold-gradient hover:text-primary transition-all duration-300 cursor-pointer"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -152,7 +150,7 @@ export default function Testimonials() {
                 aria-label={`Go to testimonial ${idx + 1}`}
               >
                 <span className={`h-2 rounded-full transition-all duration-300 ${
-                  idx === activeIndex ? "w-6 bg-accent" : "w-2 bg-white/20"
+                  idx === activeIndex ? "w-6 bg-accent" : "w-2 bg-gray-300"
                 }`} />
               </button>
             ))}
@@ -160,7 +158,7 @@ export default function Testimonials() {
 
           <button
             onClick={handleNext}
-            className="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-white shadow-sm hover:border-white/20 transition-all duration-300 cursor-pointer"
+            className="w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-primary shadow-sm hover:bg-gold-gradient hover:text-primary transition-all duration-300 cursor-pointer"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />
