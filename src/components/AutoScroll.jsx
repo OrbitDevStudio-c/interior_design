@@ -9,7 +9,7 @@ export default function AutoScroll() {
   const lastTimeRef = useRef(null);
 
   // Speed: ~220 pixels per second (time-based, works identically on 60Hz and 120Hz mobile screens)
-  const SCROLL_SPEED_PER_SEC = 220;
+  const SCROLL_SPEED_PER_SEC = 60;
   const INACTIVITY_DELAY = 1000; // 1 second
 
   const getScrollTop = () => {
