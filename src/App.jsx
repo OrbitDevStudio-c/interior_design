@@ -18,6 +18,7 @@ import ContactModal from "./components/ContactModal";
 import CustomCursor from "./components/CustomCursor";
 import NoiseOverlay from "./components/NoiseOverlay";
 import MobileChapterDock from "./components/MobileChapterDock";
+import AutoScroll from "./components/AutoScroll";
 
 export default function App() {
   const COMPANY_NAME = "AURA";
@@ -30,6 +31,9 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <div className="relative min-h-screen bg-[#0b0b0b] text-[#f1f1f1] antialiased selection:bg-[#c49678] selection:text-[#0b0b0b] overflow-x-hidden">
         
+        {/* 3-Second Inactivity Auto-Scroll Tour */}
+        <AutoScroll />
+
         {/* Custom Luxury Interactive Spring Cursor (Desktop) */}
         <CustomCursor />
 
