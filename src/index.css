@@ -1,156 +1,384 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=Syne:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #111827;
-  --color-secondary: #F5F5F5;
-  --color-accent: #C8A96A;
-  --color-accent-hover: #B79859;
-  --color-accent-light: #FDFBF7;
-  --color-text-dark: #333333;
-  --color-luxury-gray: #1E293B;
-  
-  /* Overwrite gray-500 for WCAG AA color contrast rating (> 4.5:1) */
-  --color-gray-500: #59616D;
-  
-  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
-  --font-outfit: "Outfit", sans-serif;
+  /* ── Nabil Issa Editorial Palette ── */
+  --color-bg-dark:       #0b0b0b;
+  --color-bg-card:       #121212;
+  --color-bg-card-hover: #181818;
+  --color-bg-silk:       #f1f1f1;
+  --color-bg-surface:    #161616;
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-fade-in: fadeIn 1s ease-out forwards;
+  --color-text-light:    #f1f1f1;
+  --color-text-muted:    #888888;
+  --color-text-dim:      #4a4a4a;
+  --color-text-dark:     #0b0b0b;
+
+  --color-copper:        #c49678;
+  --color-copper-dark:   #9b6c56;
+  --color-accent:        #C8A96A;
+  --color-accent-gold:   #DFBA73;
+
+  --color-border-hair:   rgba(241, 241, 241, 0.09);
+  --color-border-active: rgba(196, 150, 120, 0.4);
+
+  /* Legacy aliases for compatibility */
+  --color-primary:       #0b0b0b;
+  --color-secondary:     #121212;
+  --color-luxury-gray:   #181818;
+  --color-cream:         #f1f1f1;
+  --color-cream-muted:   #888888;
+  --color-cream-dim:     #4a4a4a;
+
+  /* ── Typography ── */
+  --font-display:        "Montserrat", "Inter", sans-serif;
+  --font-headline:       "Inter", "Montserrat", sans-serif;
+  --font-body:           "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-syne:           "Syne", sans-serif;
+  --font-outfit:         "Plus Jakarta Sans", sans-serif;
+  --font-plus-jakarta:   "Plus Jakarta Sans", sans-serif;
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Custom Base Styles */
+/* ───────────────────────────────────────────
+   BASE STYLING & RESET
+─────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  background-color: #0b0b0b;
+  color: #f1f1f1;
 }
 
 body {
-  font-family: var(--font-outfit), sans-serif;
-  color: var(--color-text-dark);
-  background-color: #FFFFFF;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 300;
+  background-color: #0b0b0b;
+  color: #f1f1f1;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-plus-jakarta), sans-serif;
-}
-
-/* Custom Premium Utilities */
-
-/* Luxury glassmorphism overlays */
-.glassmorphism-light {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.glassmorphism-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(200, 169, 106, 0.15);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.glassmorphism-card:hover {
-  border-color: rgba(200, 169, 106, 0.4);
-  box-shadow: 0 20px 40px -15px rgba(200, 169, 106, 0.12);
-  transform: translateY(-4px);
-}
-
-.glassmorphism-dark {
-  background: rgba(17, 24, 39, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-/* Smooth custom scrollbars */
+/* ───────────────────────────────────────────
+   CUSTOM SCROLLBAR & UTILITIES
+─────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #F5F5F5;
+  background: #0b0b0b;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #C8A96A;
-  border-radius: 4px;
+  background: #262626;
+  border-radius: 2px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #B79859;
+  background: #c49678;
 }
 
-/* Text Selection styling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ───────────────────────────────────────────
+   SELECTION
+─────────────────────────────────────────── */
 ::selection {
-  background: #C8A96A;
-  color: #FFFFFF;
+  background: #c49678;
+  color: #0b0b0b;
 }
 
-/* Gold Gradient utilities */
-.text-gold-gradient {
-  background: linear-gradient(135deg, #DFBA73 0%, #C8A96A 50%, #9A7B3E 100%);
+/* ───────────────────────────────────────────
+   SIGNATURE NABIL ISSA TYPOGRAPHY & GRADIENTS
+─────────────────────────────────────────── */
+
+/* Metallic Bronze / Copper Gradient with Shimmer */
+.text-copper-gradient {
+  background: linear-gradient(135deg, #e3ba9e 0%, #c49678 40%, #e8c7b0 55%, #c49678 70%, #9b6c56 100%);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: copperShimmer 8s linear infinite;
 }
 
-.bg-gold-gradient {
-  background: linear-gradient(135deg, #DFBA73 0%, #C8A96A 50%, #9A7B3E 100%);
+@keyframes copperShimmer {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-.border-gold-gradient {
-  border-image: linear-gradient(135deg, #DFBA73 0%, #C8A96A 50%, #9A7B3E 100%) 1;
+.bg-copper-gradient {
+  background: linear-gradient(135deg, #e3ba9e 0%, #c49678 45%, #9b6c56 100%);
 }
 
-/* Horizontal line style in services etc. */
-.divider-gold {
-  position: relative;
-  display: inline-block;
+.border-copper {
+  border-color: #c49678;
 }
-.divider-gold::after {
-  content: '';
+
+/* Gold Gradient utility */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #e3ba9e 0%, #c49678 50%, #9a6b52 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Giant High-Impact Display Typography (Gotham Thin / Ultra Thin Sans) */
+.display-hero {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.display-bold {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.display-title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+/* Chapter Eyebrow Tag (e.g. "01 / ABOUT") */
+.chapter-tag {
+  font-family: var(--font-headline), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c49678;
+}
+
+.chapter-number-ghost {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 100;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: rgba(241, 241, 241, 0.03);
+  user-select: none;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+}
+
+/* Ambient Radial Glow Spots */
+.ambient-glow-copper {
   position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 60px;
-  height: 2px;
-  background: #C8A96A;
-}
-
-/* Timeline specific layouts */
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 24px;
-  width: 14px;
-  height: 14px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
-  background: #C8A96A;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(200, 169, 106, 0.25);
-  transform: translateX(-50%);
-  z-index: 2;
+  background: radial-gradient(circle, rgba(196, 150, 120, 0.06) 0%, rgba(11, 11, 11, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
 }
 
-@media (max-width: 768px) {
-  .timeline-item::before {
-    left: 20px;
-    transform: none;
+.ambient-glow-gold {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 169, 106, 0.05) 0%, rgba(11, 11, 11, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+/* ───────────────────────────────────────────
+   HAIRLINE GRID & DIVIDERS
+─────────────────────────────────────────── */
+.hairline-b {
+  border-bottom: 1px solid rgba(241, 241, 241, 0.08);
+}
+
+.hairline-t {
+  border-top: 1px solid rgba(241, 241, 241, 0.08);
+}
+
+.hairline-r {
+  border-right: 1px solid rgba(241, 241, 241, 0.08);
+}
+
+.hairline-l {
+  border-left: 1px solid rgba(241, 241, 241, 0.08);
+}
+
+.hairline-all {
+  border: 1px solid rgba(241, 241, 241, 0.08);
+}
+
+/* ───────────────────────────────────────────
+   INTERACTIVE BUTTONS & PILLS
+─────────────────────────────────────────── */
+.pill-btn {
+  font-family: var(--font-headline), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.6rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(241, 241, 241, 0.3);
+  color: #f1f1f1;
+  background: transparent;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.pill-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f1f1f1;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 0;
+}
+
+.pill-btn:hover::before {
+  transform: translateY(0);
+}
+
+.pill-btn:hover {
+  color: #0b0b0b;
+  border-color: #f1f1f1;
+}
+
+.pill-btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.pill-btn-copper {
+  font-family: var(--font-headline), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.8rem;
+  border-radius: 9999px;
+  border: 1px solid #c49678;
+  color: #0b0b0b;
+  background: linear-gradient(135deg, #e3ba9e 0%, #c49678 45%, #9b6c56 100%);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px -5px rgba(196, 150, 120, 0.25);
+}
+
+.pill-btn-copper:hover {
+  opacity: 0.92;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -4px rgba(196, 150, 120, 0.45);
+}
+
+/* ───────────────────────────────────────────
+   EDITORIAL FORM CONTROLS
+─────────────────────────────────────────── */
+.nabil-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(241, 241, 241, 0.15);
+  color: #f1f1f1;
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  padding: 1rem 0;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s ease, padding-left 0.3s ease;
+  border-radius: 0;
+}
+
+.nabil-input::placeholder {
+  color: #4a4a4a;
+  font-weight: 300;
+}
+
+.nabil-input:focus {
+  border-bottom-color: #c49678;
+  padding-left: 0.5rem;
+}
+
+.nabil-input option {
+  background: #141414;
+  color: #f1f1f1;
+}
+
+/* ───────────────────────────────────────────
+   CARD SHINE & HOVER EFFECTS
+─────────────────────────────────────────── */
+.luxury-card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-card-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 55%
+  );
+  transform: rotate(-45deg) translateY(-100%);
+  transition: transform 0.75s ease;
+  pointer-events: none;
+}
+
+.luxury-card-shine:hover::after {
+  transform: rotate(-45deg) translateY(100%);
+}
+
+/* ───────────────────────────────────────────
+   GLASSMORPHISM & LIGHTBOX
+─────────────────────────────────────────── */
+.glass-overlay {
+  background: rgba(11, 11, 11, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.glass-modal {
+  background: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(241, 241, 241, 0.1);
+}
+
+/* ───────────────────────────────────────────
+   REDUCED MOTION SUPPORT
+─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

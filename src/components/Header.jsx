@@ -1,175 +1,243 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ArrowRight } from "lucide-react";
+import { X, ArrowRight, ArrowUpRight } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
-export default function Header({ companyName = "AURA" }) {
+export default function Header({ companyName = "AURA", onOpenContact }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Why Us", href: "#why-choose-us" },
-    { name: "Process", href: "#process" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
+  const navChapters = [
+    { num: "01", name: "ABOUT",          href: "#about",         desc: "Silence, Proportion, Light" },
+    { num: "02", name: "INTERIOR",       href: "#portfolio",     desc: "Spaces That Tell Your Story" },
+    { num: "03", name: "SERVICES",       href: "#services",      desc: "The Discipline of Craft" },
+    { num: "04", name: "ARCHITECTURE",   href: "#process",       desc: "Precision & Architectural Standards" },
+    { num: "05", name: "CONTACT",        href: "#contact",       desc: "Where Dialogue Takes Shape" },
   ];
 
-  const handleLinkClick = (e, href) => {
+  const scrollToSection = (e, href) => {
     e.preventDefault();
     setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80; // height of header
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
+    const target = document.querySelector(href);
+    if (target) {
+      const topOffset = target.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: topOffset, behavior: "smooth" });
     }
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-          ? "bg-primary/90 shadow-lg backdrop-blur-md border-b border-white/5 py-4"
-          : "bg-transparent py-6"
-          }`}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+        style={{
+          padding: isScrolled ? "14px 0" : "24px 0",
+          background: isScrolled ? "rgba(11,11,11,0.92)" : "transparent",
+          backdropFilter: isScrolled ? "blur(20px)" : "none",
+          borderBottom: isScrolled ? "1px solid rgba(241,241,241,0.07)" : "none",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-          {/* Logo */}
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-10 flex items-center justify-between">
+          
+          {/* Logo / Monogram (Left) */}
           <a
             href="#"
-            onClick={(e) => handleLinkClick(e, "#")}
-            className="flex flex-col tracking-wider text-white select-none group"
+            onClick={(e) => scrollToSection(e, "#")}
+            className="flex items-center gap-3 text-decoration-none group cursor-pointer"
           >
-            <span className="text-2xl md:text-3xl font-extrabold text-gold-gradient font-plus-jakarta flex items-center gap-1">
-              {companyName}
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-gray-400 group-hover:text-accent transition-colors duration-300">
-              Design Studio
-            </span>
+            <div
+              className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center transition-all duration-300 group-hover:border-[#c49678] group-hover:scale-105"
+            >
+              <span className="text-[11px] font-bold tracking-tighter text-white group-hover:text-[#c49678]">
+                A
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span
+                className="font-bold text-base sm:text-lg tracking-[0.2em] text-white leading-none group-hover:text-[#c49678] transition-colors"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                {companyName}
+              </span>
+              <span className="text-[8px] tracking-[0.3em] uppercase text-[#666] mt-0.5">
+                STUDIO
+              </span>
+            </div>
           </a>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleLinkClick(e, link.href)}
-                className="text-sm font-medium tracking-wide text-gray-300 hover:text-accent transition-colors duration-300 relative py-1 group"
-              >
-                {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-          </nav>
-
-          {/* Consultation Button */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, "#contact")}
-              className="px-6 py-2.5 rounded-full border border-accent/40 text-accent font-medium text-sm flex items-center gap-2 hover:bg-accent hover:text-primary transition-all duration-300 shadow-sm"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Get Consultation</span>
-            </a>
+          {/* Center Title (Desktop) */}
+          <div className="hidden md:flex items-center gap-3">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#c49678] animate-ping" />
+            <span className="text-[10px] tracking-[0.35em] uppercase text-[#777] font-medium">
+              BESPOKE ARCHITECTURE & INTERIORS
+            </span>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-white hover:text-accent p-2 transition-colors focus:outline-none"
-            aria-label="Toggle navigation menu"
-          >
-            {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
-          </button>
+          {/* Right Action: Get In Touch + Burger Menu Button */}
+          <div className="flex items-center gap-4 sm:gap-6">
+            <MagneticButton
+              onClick={onOpenContact}
+              className="pill-btn text-[10px] tracking-[0.2em] py-2 px-4 sm:px-6"
+            >
+              <span>GET IN TOUCH</span>
+            </MagneticButton>
+
+            {/* Twin-Line Hamburger Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-10 h-10 flex flex-col items-center justify-center gap-1.5 cursor-pointer group bg-transparent border-none p-0 focus:outline-none"
+              aria-label="Toggle navigation menu"
+            >
+              <span
+                className="w-6 h-[1.5px] bg-[#f1f1f1] transition-all duration-300 group-hover:bg-[#c49678] group-hover:scale-x-110"
+              />
+              <span
+                className="w-6 h-[1.5px] bg-[#f1f1f1] transition-all duration-300 group-hover:bg-[#c49678] group-hover:scale-x-75"
+              />
+            </button>
+          </div>
+
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Fullscreen Overlay Navigation (Nabil Issa Menu Style) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-md lg:hidden"
-            onClick={() => setIsOpen(false)}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-50 flex flex-col justify-between"
+            style={{
+              background: "rgba(11, 11, 11, 0.98)",
+              backdropFilter: "blur(24px)",
+            }}
           >
-            {/* Drawer Content */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-0 bottom-0 w-[80%] max-w-sm bg-primary border-l border-white/10 p-8 flex flex-col justify-between"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="pt-20">
-                <div className="text-xs uppercase tracking-widest text-accent mb-6 font-medium border-b border-accent/20 pb-2">
-                  Navigation
-                </div>
-                <div className="flex flex-col space-y-5">
-                  {navLinks.map((link, idx) => (
-                    <motion.a
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.05 }}
-                      key={link.name}
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
-                      className="text-lg font-medium text-gray-200 hover:text-accent transition-colors flex items-center justify-between group py-1"
+            {/* Top Bar of Menu */}
+            <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 py-6 flex items-center justify-between hairline-b">
+              <span className="text-[10px] tracking-[0.3em] uppercase text-[#777]">
+                NAVIGATION ARCHITECTURE
+              </span>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#c49678] hover:text-[#c49678] transition-colors cursor-pointer"
+                aria-label="Close navigation"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Menu Content Grid */}
+            <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 py-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              
+              {/* Left Column: Huge Chapter Links */}
+              <div className="lg:col-span-8 space-y-2 sm:space-y-4">
+                {navChapters.map((ch, idx) => (
+                  <motion.div
+                    key={ch.num}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.07, duration: 0.5 }}
+                  >
+                    <a
+                      href={ch.href}
+                      onClick={(e) => scrollToSection(e, ch.href)}
+                      className="group flex items-baseline gap-4 sm:gap-6 py-2 text-decoration-none transition-all duration-300"
                     >
-                      <span>{link.name}</span>
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                    </motion.a>
-                  ))}
+                      <span className="text-xs sm:text-sm font-light text-[#555] tracking-widest group-hover:text-[#c49678] transition-colors">
+                        {ch.num}
+                      </span>
+                      <span
+                        className="display-hero text-3xl sm:text-5xl md:text-6xl text-[#f1f1f1] group-hover:text-[#c49678] transition-all duration-300 group-hover:translate-x-3"
+                      >
+                        {ch.name}
+                      </span>
+                      <span className="text-xs text-[#666] font-light hidden md:inline-block pl-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        — {ch.desc}
+                      </span>
+                    </a>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Right Column: Studio Coordinates & Channels */}
+              <div className="lg:col-span-4 space-y-8 hairline-l lg:pl-10">
+                <div>
+                  <span className="chapter-tag block mb-2">STUDIO LOCATION</span>
+                  <p className="text-sm font-light text-[#bbb] leading-relaxed">
+                    Level 4, Executive Plaza, Bandra West<br />
+                    Mumbai, Maharashtra 400050
+                  </p>
+                </div>
+
+                <div>
+                  <span className="chapter-tag block mb-2">DIRECT CHANNELS</span>
+                  <div className="space-y-1 text-sm">
+                    <a
+                      href="mailto:hello@auradesignstudio.in"
+                      className="block text-[#f1f1f1] hover:text-[#c49678] transition-colors"
+                    >
+                      hello@auradesignstudio.in
+                    </a>
+                    <a
+                      href="tel:+919876543210"
+                      className="block text-[#888] hover:text-[#c49678] transition-colors"
+                    >
+                      +91 98765 43210
+                    </a>
+                  </div>
+                </div>
+
+                <div>
+                  <span className="chapter-tag block mb-2">DISCOURSE & SOCIAL</span>
+                  <div className="flex flex-wrap gap-4 text-xs tracking-widest uppercase">
+                    {[
+                      { name: "Instagram", href: "https://instagram.com" },
+                      { name: "LinkedIn",  href: "https://linkedin.com" },
+                      { name: "WhatsApp",  href: "https://wa.me/919876543210" },
+                    ].map((s) => (
+                      <a
+                        key={s.name}
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#888] hover:text-[#c49678] transition-colors inline-flex items-center gap-1"
+                      >
+                        <span>{s.name}</span>
+                        <ArrowUpRight size={10} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <MagneticButton
+                    onClick={() => {
+                      setIsOpen(false);
+                      onOpenContact();
+                    }}
+                    className="pill-btn-copper w-full"
+                  >
+                    <span>INITIATE PROJECT DIALOGUE</span>
+                    <ArrowRight size={14} />
+                  </MagneticButton>
                 </div>
               </div>
 
-              {/* Drawer footer details */}
-              <div className="space-y-6">
-                <div className="border-t border-white/10 pt-6">
-                  <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">
-                    Let's Build Dreams
-                  </p>
-                  <a
-                    href="#contact"
-                    onClick={(e) => handleLinkClick(e, "#contact")}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gold-gradient text-primary font-semibold text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-lg"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span>Free Consultation</span>
-                  </a>
-                </div>
-                <p className="text-[10px] text-gray-600 text-center">
-                  Designed by Vansh & Developed by Ridham
-                </p>
-              </div>
-            </motion.div>
+            </div>
+
+            {/* Bottom Bar of Menu */}
+            <div className="max-w-[1400px] w-full mx-auto px-6 sm:px-10 py-6 flex items-center justify-between hairline-t text-[10px] text-[#555] tracking-widest uppercase">
+              <span>AURA DESIGN STUDIO &bull; ARCHITECTURAL MASTERY</span>
+              <span>EST. 2020 &bull; MUMBAI</span>
+            </div>
+
           </motion.div>
         )}
       </AnimatePresence>

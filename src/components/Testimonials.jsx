@@ -1,167 +1,143 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const TESTIMONIALS = [
   {
-    name: "Vikram & Shalini Malhotra",
-    location: "Alibaug",
-    role: "Villa Owners",
-    photo: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&h=150&q=40",
+    name: "VIKRAM & SHALINI MALHOTRA",
+    location: "Alibaug Villa Residence",
+    role: "Private Villa Owners",
     rating: 5,
-    review: "Working with designer Vansh was a masterclass in collaboration. He took our rough ideas for our beach villa and translated them into an absolute sanctuary. The execution was top-notch, and the timeline was met exactly."
+    review:
+      "Working with lead designer Vansh was a masterclass in collaboration. He transformed our coastal property into an architectural sanctuary. The execution was flawless, and the handover was delivered precisely on schedule.",
   },
   {
-    name: "Rohan Sen",
-    location: "Bangalore",
-    role: "CEO, Synergy Tech",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=40",
+    name: "ROHAN SEN",
+    location: "Bangalore HQ",
+    role: "Chief Executive, Synergy Tech",
     rating: 5,
-    review: "Our corporate headquarters needed to feel premium yet highly operational. AURA Design Studio nailed the biophilic layouts, acoustic systems, and private pods. The execution was on-time and within budget. Highly recommended!"
+    review:
+      "Our corporate headquarters demanded a delicate balance of brand prestige and deep operational acoustic focus. AURA Design Studio delivered biophilic layouts, custom boardroom tables, and private executive suites with zero compromises.",
   },
   {
-    name: "Dr. Ananya Goel",
-    location: "Mumbai",
-    role: "Penthouse Owner",
-    photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=40",
+    name: "DR. ANANYA GOEL",
+    location: "Mumbai Penthouse",
+    role: "Obsidian Penthouse Owner",
     rating: 5,
-    review: "The Obsidian Penthouse exceeded every single expectation. The dark marble finish, profile lighting, and custom furniture look like something straight out of a global design digest. Absolutely stunning work by Vansh!"
+    review:
+      "The Obsidian Penthouse exceeded every benchmark. The Italian charcoal marble, concealed profile lighting, and custom furniture look straight out of an architectural digest. Truly world-class execution by Vansh and the team.",
   },
   {
-    name: "Kabir & Meera Dev",
-    location: "Delhi NCR",
-    role: "Duplex Owners",
-    photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&h=150&q=40",
+    name: "KABIR & MEERA DEV",
+    location: "Delhi NCR Duplex",
+    role: "Private Duplex Owners",
     rating: 5,
-    review: "From our first consultation to the key handover, the team's professionalism was immaculate. The modular kitchen is an absolute chef's dream, and the living area feels incredibly spacious. Truly a premium experience."
-  }
+    review:
+      "From the initial consultation to the white-glove handover, the professionalism was immaculate. The modular kitchen is an absolute chef's dream, and the double-height formal living salon is breathtaking.",
+  },
 ];
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+      setActive((prev) => (prev + 1) % TESTIMONIALS.length);
     }, 8000);
     return () => clearInterval(timer);
   }, []);
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  };
+  const t = TESTIMONIALS[active];
 
   return (
-    <section id="testimonials" className="py-24 bg-secondary/50 relative overflow-hidden">
-      {/* Decorative background shape */}
-      <div className="absolute top-10 right-10 w-96 h-96 rounded-full border-2 border-accent/5 pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+    <section id="testimonials" className="py-24 sm:py-32 bg-[#0b0b0b] relative overflow-hidden hairline-b">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-10 relative z-10">
         
-        {/* Title */}
-        <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
-            Testimonials
+        {/* Eyebrow */}
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="chapter-tag block mb-3">
+            VOICES OF APPROVAL
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
-            Resonating Approval
+          <h2 className="display-title text-2xl sm:text-4xl text-white">
+            RESONATING{" "}
+            <span className="text-copper-gradient font-light italic">
+              TRUST
+            </span>
           </h2>
         </div>
 
-        {/* Testimonial Box */}
-        <div className="relative min-h-[380px] sm:min-h-[300px]">
+        {/* Testimonial Stage */}
+        <div className="relative min-h-[300px] flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 15 }}
+              key={active}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.5 }}
-              className="glassmorphism-card p-8 md:p-12 rounded-3xl relative border border-gray-100 shadow-xl"
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-3xl mx-auto space-y-8"
             >
-              {/* Quote Icon overlay */}
-              <div className="absolute right-8 top-8 text-accent/15 select-none pointer-events-none">
-                <Quote className="w-16 h-16 transform rotate-180" />
+              {/* Stars */}
+              <div className="flex items-center justify-center gap-1.5 text-[#c49678]">
+                {[...Array(t.rating)].map((_, i) => (
+                  <span key={i} className="text-xs">&bull;</span>
+                ))}
+                <span className="text-[10px] tracking-widest uppercase ml-2 text-[#888]">
+                  VERIFIED CLIENT COMMENDATION
+                </span>
               </div>
 
-              <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                {/* Client Photo */}
-                <div className="relative shrink-0">
-                  <img
-                    src={TESTIMONIALS[activeIndex].photo}
-                    alt={TESTIMONIALS[activeIndex].name}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover border-2 border-accent shadow-md"
-                  />
-                  <div className="absolute -bottom-2 -right-2 bg-gold-gradient text-primary p-1.5 rounded-lg shadow-md">
-                    <Quote className="w-3 h-3 text-primary" />
-                  </div>
-                </div>
+              {/* Quote Statement */}
+              <p className="text-base sm:text-xl md:text-2xl font-light text-[#e0e0e0] leading-relaxed italic">
+                "{t.review}"
+              </p>
 
-                {/* Content */}
-                <div className="text-center md:text-left flex-1 space-y-4">
-                  {/* Stars */}
-                  <div className="flex items-center justify-center md:justify-start gap-1">
-                    {[...Array(TESTIMONIALS[activeIndex].rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-accent text-accent" />
-                    ))}
-                  </div>
-
-                  {/* Review Text */}
-                  <p className="text-gray-600 font-light text-base md:text-lg italic leading-relaxed">
-                    "{TESTIMONIALS[activeIndex].review}"
-                  </p>
-
-                  {/* Meta details */}
-                  <div className="pt-2">
-                    <h4 className="text-primary font-bold font-plus-jakarta text-sm">
-                      {TESTIMONIALS[activeIndex].name}
-                    </h4>
-                    <p className="text-xs text-gray-500 font-light">
-                      {TESTIMONIALS[activeIndex].role} &bull; {TESTIMONIALS[activeIndex].location}
-                    </p>
-                  </div>
-                </div>
+              {/* Attribution */}
+              <div className="space-y-1 hairline-t pt-6 max-w-xs mx-auto">
+                <h4 className="font-semibold text-xs tracking-[0.2em] uppercase text-white">
+                  {t.name}
+                </h4>
+                <p className="text-[10px] tracking-widest uppercase text-[#c49678]">
+                  {t.role} &bull; {t.location}
+                </p>
               </div>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Carousel controls */}
-        <div className="flex items-center justify-between mt-8 px-4">
+        {/* Carousel Indicator & Controls */}
+        <div className="flex items-center justify-center gap-6 mt-12">
           <button
-            onClick={handlePrev}
-            className="w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-primary shadow-sm hover:bg-gold-gradient hover:text-primary transition-all duration-300 cursor-pointer"
+            onClick={() => setActive((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)}
             aria-label="Previous testimonial"
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#c49678] hover:text-[#c49678] transition-colors cursor-pointer bg-transparent"
           >
-            <ChevronLeft className="w-5 h-5" />
+            <ChevronLeft size={16} />
           </button>
-          
-          {/* Indicator dots */}
+
           <div className="flex items-center gap-2">
-            {TESTIMONIALS.map((_, idx) => (
+            {TESTIMONIALS.map((_, i) => (
               <button
-                key={idx}
-                onClick={() => setActiveIndex(idx)}
-                className="p-3 -m-3 cursor-pointer focus:outline-none flex items-center justify-center"
-                aria-label={`Go to testimonial ${idx + 1}`}
+                key={i}
+                onClick={() => setActive(i)}
+                aria-label={`Jump to review ${i + 1}`}
+                className="p-2 cursor-pointer bg-transparent border-none"
               >
-                <span className={`h-2 rounded-full transition-all duration-300 ${
-                  idx === activeIndex ? "w-6 bg-accent" : "w-2 bg-gray-300"
-                }`} />
+                <span
+                  className={`block h-[1px] transition-all duration-300 ${
+                    i === active ? "w-6 bg-[#c49678]" : "w-2 bg-white/20"
+                  }`}
+                />
               </button>
             ))}
           </div>
 
           <button
-            onClick={handleNext}
-            className="w-12 h-12 rounded-xl bg-white border border-gray-100 flex items-center justify-center text-primary shadow-sm hover:bg-gold-gradient hover:text-primary transition-all duration-300 cursor-pointer"
+            onClick={() => setActive((prev) => (prev + 1) % TESTIMONIALS.length)}
             aria-label="Next testimonial"
+            className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#c49678] hover:text-[#c49678] transition-colors cursor-pointer bg-transparent"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight size={16} />
           </button>
         </div>
 

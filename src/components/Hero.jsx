@@ -1,199 +1,190 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowDown } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
-const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=40", // Luxury Living Room
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=40", // Modern Kitchen
-  "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=40"  // Elegant Bedroom
+const HERO_SLIDES = [
+  {
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=75",
+    location: "THE OBSIDIAN PENTHOUSE, MUMBAI",
+    caption: "CHARCOAL MARBLE, VELVET & TIMELESS GEOMETRY",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=75",
+    location: "VILLA LUMINA, ALIBAUG",
+    caption: "DOUBLE-HEIGHT GLASS FACADES & NATURAL STONE",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1800&q=75",
+    location: "THE CULINARY HEARTH, DELHI NCR",
+    caption: "GERMAN PRECISION & MONOLITHIC MARBLE ISLANDS",
+  },
 ];
 
-
-export default function Hero() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function Hero({ onOpenContact }) {
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-    }, 6000);
+      setCurrent((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % HERO_IMAGES.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length);
-  };
-
-  const handleScrollTo = (id) => {
-    const element = document.querySelector(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+  const scrollTo = (id) => {
+    const target = document.querySelector(id);
+    if (target) {
+      const topOffset = target.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: topOffset, behavior: "smooth" });
     }
   };
 
   return (
-    <section className="relative min-h-[100svh] sm:h-screen w-full overflow-hidden bg-primary flex items-center justify-center">
-      {/* Background Slideshow */}
+    <section className="relative h-[100svh] min-h-[700px] w-full overflow-hidden bg-[#0b0b0b] flex flex-col justify-between">
+      
+      {/* Background Image Carousel with Ken Burns Slow Pan & Cinematic Overlay */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.img
-            key={currentIndex}
-            src={HERO_IMAGES[currentIndex]}
-            alt="Luxury Interior Space"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 0.6, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
+            key={current}
+            src={HERO_SLIDES[current].image}
+            alt={HERO_SLIDES[current].location}
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 0.55, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 2.2, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0 w-full h-full object-cover"
-            fetchPriority={currentIndex === 0 ? "high" : "low"}
+            fetchPriority={current === 0 ? "high" : "low"}
             loading="eager"
-            crossOrigin="anonymous"
           />
         </AnimatePresence>
-        {/* Luxury Vignette and overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-primary/50" />
+
+        {/* Multi-layered cinematic gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0b] via-[#0b0b0b]/40 to-[#0b0b0b]/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b0b]/80 via-transparent to-[#0b0b0b]/80" />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full pt-24 sm:pt-28 md:pt-24 lg:pt-16 text-left pb-28 sm:pb-0">
-        <div className="max-w-3xl">
-          {/* Subtle Tag badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full glassmorphism text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-4 sm:mb-6"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Transforming Houses into Dream Homes</span>
-          </motion.div>
+      {/* Top Spacer for header */}
+      <div className="relative z-10 pt-28 sm:pt-32" />
 
-          {/* Main Title */}
+      {/* Center Main Stage Display Headline */}
+      <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 my-auto">
+        
+        {/* Eyebrow Chapter Label */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex items-center gap-3 mb-4 sm:mb-6"
+        >
+          <span className="chapter-tag">
+            01 / PROLOGUE
+          </span>
+          <span className="w-12 h-[1px] bg-[#c49678]/40" />
+          <span className="text-[10px] tracking-[0.25em] text-[#888] uppercase hidden sm:inline-block">
+            MUMBAI &bull; BANGALORE &bull; DELHI
+          </span>
+        </motion.div>
+
+        {/* Nabil Issa signature high-impact stacked display headline */}
+        <div className="mb-6 sm:mb-8 overflow-hidden">
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] sm:leading-[1.1] mb-4 sm:mb-6 font-plus-jakarta"
+            transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="display-hero text-4xl sm:text-7xl md:text-8xl lg:text-[6.8rem] text-white tracking-tight"
           >
-            Designing Beautiful <br />
-            <span className="text-gold-gradient">Spaces That Inspire</span>
+            CAN SPACES
+            <br />
+            <span className="text-copper-gradient font-extralight italic pr-2 sm:pr-4">
+              SHAPE
+            </span>
+            HOW WE LIVE?
           </motion.h1>
-
-          {/* Short Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 font-light leading-relaxed mb-6 sm:mb-8 max-w-2xl font-outfit"
-          >
-            AURA Design Studio crafts bespoke, ultra-luxury interior spaces that merge
-            architectural brilliance with absolute comfort. Experience interior design, redefined.
-          </motion.p>
-
-          {/* Call to Actions */}
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-8 sm:mb-20 md:mb-0"
-          >
-            <button
-              onClick={() => handleScrollTo("#contact")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gold-gradient text-primary font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:opacity-95 shadow-2xl transition-all duration-300 hover:scale-[1.02] cursor-pointer"
-            >
-              <span>Get Free Consultation</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => handleScrollTo("#portfolio")}
-              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border border-white/20 text-white font-bold text-[13px] sm:text-sm tracking-wider uppercase flex items-center justify-center gap-3 hover:bg-white/10 transition-all duration-300 cursor-pointer"
-            >
-              <span>View Portfolio</span>
-            </button>
-          </motion.div>
         </div>
+
+        {/* Subtitle Statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end"
+        >
+          <p className="md:col-span-7 text-xs sm:text-sm md:text-base text-[#999] font-light leading-relaxed max-w-xl">
+            AURA Design Studio crafts bespoke luxury environments where architectural proportion, tactile materiality, and atmospheric light converge into timeless statements.
+          </p>
+
+          <div className="md:col-span-5 flex flex-wrap items-center gap-4 md:justify-end">
+            <MagneticButton
+              onClick={() => scrollTo("#portfolio")}
+              className="pill-btn-copper text-xs"
+            >
+              EXPLORE WORKS
+            </MagneticButton>
+            <MagneticButton
+              onClick={onOpenContact}
+              className="pill-btn text-xs"
+            >
+              GET IN TOUCH
+            </MagneticButton>
+          </div>
+        </motion.div>
+
       </div>
 
-      {/* Floating Experience Card */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-12 right-12 z-20 hidden lg:flex flex-col p-6 rounded-2xl glassmorphism border border-white/15 max-w-[280px]"
-      >
-        <div className="flex items-center gap-4 mb-3">
-          <div className="w-12 h-12 rounded-xl bg-gold-gradient flex items-center justify-center font-extrabold text-primary text-xl shadow-lg">
-            5+
+      {/* Bottom Bar: Slide Controls & Active Location Meta */}
+      <div className="relative z-10 max-w-[1400px] w-full mx-auto px-6 sm:px-10 pb-8 sm:pb-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 hairline-t pt-6">
+        
+        {/* Slide Location Info */}
+        <div className="flex items-center gap-4">
+          <div className="text-[11px] font-mono tracking-widest text-[#c49678]">
+            0{current + 1} / 0{HERO_SLIDES.length}
           </div>
+          <div className="w-8 h-[1px] bg-white/15" />
           <div>
-            <h4 className="text-white font-bold font-plus-jakarta text-sm">Years Excellence</h4>
-            <p className="text-gray-400 text-xs font-light">Crafting spaces</p>
+            <p className="text-[11px] tracking-[0.15em] uppercase text-white font-medium">
+              {HERO_SLIDES[current].location}
+            </p>
+            <p className="text-[9px] tracking-widest uppercase text-[#777]">
+              {HERO_SLIDES[current].caption}
+            </p>
           </div>
         </div>
-        <p className="text-gray-300 text-xs font-light leading-relaxed border-t border-white/10 pt-3">
-          Designed by luxury visionaries like <span className="font-semibold text-accent">Vansh</span> and built on advanced tech by <span className="font-semibold text-accent">Ridham</span>.
-        </p>
-      </motion.div>
 
-      {/* Slide Controls */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 sm:bottom-6 sm:left-6 sm:translate-x-0 z-20 flex flex-wrap items-center justify-center sm:justify-start gap-3 px-4 sm:px-0 w-[calc(100%-2rem)] sm:w-auto">
-        <button
-          onClick={handlePrev}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 cursor-pointer"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-        <button
-          onClick={handleNext}
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300 cursor-pointer"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-        <div className="flex items-center gap-2 ml-0 sm:ml-4 mt-2 sm:mt-0">
-          {HERO_IMAGES.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className="p-3 -m-3 cursor-pointer focus:outline-none flex items-center justify-center"
-              aria-label={`Go to slide ${idx + 1}`}
+        {/* Controls & Scroll Cue */}
+        <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
+          
+          {/* Scroll cue */}
+          <button
+            onClick={() => scrollTo("#about")}
+            className="flex items-center gap-2 text-[10px] tracking-[0.25em] text-[#777] hover:text-[#c49678] transition-colors cursor-pointer bg-transparent border-none p-0"
+          >
+            <span>SCROLL TO EXPLORE</span>
+            <ArrowDown size={12} className="animate-bounce" />
+          </button>
+
+          {/* Slider Prev / Next Buttons */}
+          <div className="flex items-center gap-2">
+            <MagneticButton
+              onClick={() => setCurrent((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+              aria-label="Previous slide"
+              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#c49678] hover:text-[#c49678] transition-colors cursor-pointer bg-transparent"
             >
-              <span className={`h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? "w-6 bg-accent" : "w-2 bg-white/40"
-                }`} />
-            </button>
-          ))}
+              <ChevronLeft size={16} />
+            </MagneticButton>
+            <MagneticButton
+              onClick={() => setCurrent((prev) => (prev + 1) % HERO_SLIDES.length)}
+              aria-label="Next slide"
+              className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-[#c49678] hover:text-[#c49678] transition-colors cursor-pointer bg-transparent"
+            >
+              <ChevronRight size={16} />
+            </MagneticButton>
+          </div>
+
         </div>
+
       </div>
 
-      {/* Bottom Scroll Down Mouse Animation */}
-      <div
-        onClick={() => handleScrollTo("#about")}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden sm:flex flex-col items-center gap-2 cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
-      >
-        <span className="text-[10px] uppercase tracking-[0.25em] text-white/60">Scroll Down</span>
-        <div className="w-5 h-8 border-2 border-white/40 rounded-full flex justify-center p-1.5">
-          <motion.div
-            animate={{
-              y: [0, 8, 0],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="w-1 h-2 bg-accent rounded-full"
-          />
-        </div>
-      </div>
-    </section >
+    </section>
   );
 }

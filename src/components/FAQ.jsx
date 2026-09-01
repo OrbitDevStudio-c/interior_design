@@ -1,105 +1,119 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus, HelpCircle } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
 const FAQS = [
   {
-    question: "What is your primary design style?",
-    answer: "We specialize in Bespoke Modern Luxury, combining glass, marble, oak, and gold profiles. However, our lead designer Vansh adapts concepts fully to your personal aesthetic, whether that is Scandinavian minimalism, mid-century modern, or classic European grandiosity."
+    num: "01",
+    question: "WHAT IS AURA'S CORE ARCHITECTURAL SIGNATURE?",
+    answer:
+      "We specialize in Monolithic Modern Luxury — fusing Italian marble, dark smoked oak, architectural brass profiles, and concealed ambient lighting. However, lead designer Vansh tailors every design language to your spatial orientation and personal lifestyle.",
   },
   {
-    question: "How long does a typical interior project take?",
-    answer: "Turnkey residential apartments generally require 60 to 90 days. Large custom villas and corporate offices typically range from 120 to 180 days. A comprehensive schedule is generated and agreed upon during our initial Planning phase."
+    num: "02",
+    question: "WHAT IS THE EXPECTED DURATION FOR A TURNKEY RESIDENCE?",
+    answer:
+      "Turnkey luxury residential penthouses typically take 75 to 90 days. Expansive custom villas and corporate headquarters generally span 120 to 180 days. A binding milestone schedule is signed before execution begins.",
   },
   {
-    question: "Who will manage the construction and installation onsite?",
-    answer: "A dedicated project manager will supervise your site daily, under the direct design oversight of Vansh. You will also have access to an online dashboard to track progress, layouts, and material deliveries."
+    num: "03",
+    question: "WHO SUPERVISES DAILY SITE OPERATIONS?",
+    answer:
+      "A dedicated on-site project engineer oversees daily installations, with direct design audits by lead designer Vansh. Clients also receive weekly photo dashboards tracking milestone progress.",
   },
   {
-    question: "Do you provide detailed 3D visual walkthroughs?",
-    answer: "Yes, 3D design is Step 03 of our process. We provide high-fidelity photorealistic 3D renderings and panoramic virtual walkthroughs, allowing you to approve every detail before we begin purchasing materials."
+    num: "04",
+    question: "DO YOU PROVIDE HIGH-FIDELITY 3D WALKTHROUGHS BEFORE PROCUREMENT?",
+    answer:
+      "Yes. Photorealistic 3D virtual walkthroughs and material sampling boards are finalized in Stage 03, giving you total visual clarity before any materials are procured or site demolition begins.",
   },
   {
-    question: "Can I choose my own materials and custom fixtures?",
-    answer: "Absolutely. We arrange material selection visits to our curated partner galleries in Mumbai, Delhi, and Bangalore. You will touch and select marble slabs, veneers, hardware finishes, fabrics, and ambient light fixtures."
+    num: "05",
+    question: "CAN CLIENTS SELECT BESPOKE MARBLE SLABS AND HARDWARE FIXTURES?",
+    answer:
+      "Yes, we arrange private curated visits to our partner stone and hardware galleries in Mumbai, Delhi, and Bangalore, allowing you to hand-select marble bookmatches, veneers, and custom lighting.",
   },
   {
-    question: "Is there a fee for the initial design consultation?",
-    answer: "No, the initial consultation is completely complimentary. We discuss your design ideas, spatial layout, budget boundaries, and timeline expectations to see how we can bring your dream space to life."
-  }
+    num: "06",
+    question: "IS THERE AN INITIAL FEE FOR THE ARCHITECTURAL CONSULTATION?",
+    answer:
+      "The initial project discourse and feasibility review is completely complimentary. We discuss your architectural aspirations, floor plans, budget parameters, and timeline requirements.",
+  },
 ];
 
 export default function FAQ() {
   const [openIdx, setOpenIdx] = useState(null);
 
-  const toggleFAQ = (idx) => {
+  const toggle = (idx) => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
 
   return (
-    <section id="faq" className="py-24 bg-white relative overflow-hidden">
-      {/* Decorative Blur Spheres */}
-      <div className="absolute right-0 bottom-0 w-72 h-72 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+    <section id="faq" className="py-24 sm:py-32 bg-[#0b0b0b] relative overflow-hidden hairline-b">
+      <div className="max-w-[1000px] mx-auto px-6 sm:px-10 relative z-10">
         
-        {/* Title */}
-        <div className="text-center mb-16">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
-            FAQ
+        {/* Eyebrow */}
+        <div className="text-center mb-16 sm:mb-20">
+          <span className="chapter-tag block mb-3">
+            INQUIRIES ANSWERED
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
-            Inquiries Answered
+          <h2 className="display-title text-2xl sm:text-4xl md:text-5xl text-white">
+            COMMON{" "}
+            <span className="text-copper-gradient font-light italic">
+              CONSIDERATIONS
+            </span>
           </h2>
-          <p className="text-gray-500 font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
-            Have questions about budgets, timelines, or our process? We have compiled the most common queries below.
+          <p className="text-xs sm:text-sm text-[#888] font-light mt-3 max-w-md mx-auto">
+            Essential clarity on project logistics, timelines, and architectural execution.
           </p>
         </div>
 
-        {/* Accordions Container */}
-        <div className="space-y-4">
+        {/* Accordions */}
+        <div className="hairline-t">
           {FAQS.map((faq, idx) => {
             const isOpen = openIdx === idx;
             return (
-              <div
-                key={idx}
-                className="border border-gray-100 rounded-2xl overflow-hidden shadow-sm bg-secondary/20 hover:border-accent/20 transition-all duration-300"
-              >
-                {/* Header/Question Trigger */}
+              <div key={faq.num} className="hairline-b">
                 <button
-                  onClick={() => toggleFAQ(idx)}
-                  className="w-full px-6 py-5 md:px-8 md:py-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
+                  onClick={() => toggle(idx)}
+                  className="w-full py-6 sm:py-8 flex items-center justify-between gap-6 text-left cursor-pointer bg-transparent border-none focus:outline-none group"
                   aria-expanded={isOpen}
                 >
-                  <div className="flex items-center gap-4 pr-4">
-                    <HelpCircle className={`w-5 h-5 shrink-0 transition-colors ${isOpen ? 'text-accent' : 'text-gray-400'}`} />
-                    <span className="text-sm md:text-base font-bold text-primary font-plus-jakarta">
+                  <div className="flex items-baseline gap-4 sm:gap-6">
+                    <span className="font-mono text-xs text-[#c49678]">
+                      {faq.num}
+                    </span>
+                    <span
+                      className={`text-xs sm:text-sm tracking-wider uppercase font-medium transition-colors ${
+                        isOpen ? "text-[#c49678]" : "text-[#f1f1f1] group-hover:text-[#bbb]"
+                      }`}
+                    >
                       {faq.question}
                     </span>
                   </div>
-                  
-                  {/* Indicator Icon */}
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center border transition-all ${
-                    isOpen ? 'border-accent bg-accent text-primary' : 'border-gray-200 text-gray-400'
-                  }`}>
-                    {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+
+                  <div
+                    className={`w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-colors ${
+                      isOpen
+                        ? "border-[#c49678] text-[#c49678]"
+                        : "border-white/15 text-[#666] group-hover:border-white/40"
+                    }`}
+                  >
+                    {isOpen ? <Minus size={12} /> : <Plus size={12} />}
                   </div>
                 </button>
 
-                {/* Answer Content */}
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-0 md:px-8 md:pb-6 pr-12 border-t border-gray-100/50">
-                        <p className="text-gray-500 font-light text-xs md:text-sm leading-relaxed pt-4">
-                          {faq.answer}
-                        </p>
+                      <div className="pl-10 sm:pl-12 pr-6 pb-8 text-xs sm:text-sm text-[#888] font-light leading-relaxed">
+                        {faq.answer}
                       </div>
                     </motion.div>
                   )}
@@ -108,6 +122,7 @@ export default function FAQ() {
             );
           })}
         </div>
+
       </div>
     </section>
   );

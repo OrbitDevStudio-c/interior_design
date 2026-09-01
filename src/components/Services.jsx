@@ -1,144 +1,159 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Sofa,
-  ChefHat,
-  Bed,
-  Briefcase,
-  Building,
-  Layers,
-  Lightbulb,
-  Palette
-} from "lucide-react";
+import { ArrowRight, Sofa, ChefHat, Bed, Briefcase, Building, Layers, Lightbulb, Palette } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
-export default function Services() {
-  const services = [
-    {
-      title: "Living Room Design",
-      desc: "Creating elegant, social spaces that capture personality with curated custom furniture layouts and textures.",
-      icon: Sofa
-    },
-    {
-      title: "Modular Kitchen",
-      desc: "Combining high-end German engineering, state-of-the-art storage, and seamless layouts for modern culinary artists.",
-      icon: ChefHat
-    },
-    {
-      title: "Bedroom Interior",
-      desc: "Designing tranquil, light-filled sanctuaries featuring cozy textiles, smart custom closets, and bespoke headboards.",
-      icon: Bed
-    },
-    {
-      title: "Office Interior",
-      desc: "Crafting modern collaborative workspaces that foster high productivity, absolute comfort, and clear brand identity.",
-      icon: Briefcase
-    },
-    {
-      title: "Commercial Interior",
-      desc: "Fusing luxury experiential layouts with smart spatial logistics for retail showrooms, restaurants, and lounges.",
-      icon: Building
-    },
-    {
-      title: "Furniture Design",
-      desc: "Bespoke furniture pieces sculpted from premium oak, polished brass, marble, and hand-selected luxury upholstery.",
-      icon: Palette
-    },
-    {
-      title: "False Ceiling",
-      desc: "Architectural ceiling designs incorporating floating layers, hidden sound systems, and premium profile lines.",
-      icon: Layers
-    },
-    {
-      title: "Lighting Design",
-      desc: "Curating luxury ambient, accent, and task light networks to emphasize textures and shape mood dynamics.",
-      icon: Lightbulb
-    }
-  ];
+const SERVICES = [
+  {
+    num: "01",
+    title: "LIVING ROOM ARCHITECTURE",
+    desc: "Curating expansive social volumes that capture personality through custom Italian marble backings, bespoke modular seating, and ambient cove lighting.",
+    icon: Sofa,
+  },
+  {
+    num: "02",
+    title: "MODULAR KITCHEN & DINING",
+    desc: "Fusing German engineering, monolithic marble islands, handleless cabinetry, and chef-grade appliance integration for culinary living.",
+    icon: ChefHat,
+  },
+  {
+    num: "03",
+    title: "BEDROOM SANCTUARY SUITES",
+    desc: "Sculpting tranquil private retreats featuring fluted oak acoustic walls, custom dressing lounges, and warm low-glare perimeter lighting.",
+    icon: Bed,
+  },
+  {
+    num: "04",
+    title: "EXECUTIVE OFFICE INTERIORS",
+    desc: "Designing high-performance collaborative workspaces, private boardrooms, and sound-engineered pods that embody corporate prestige.",
+    icon: Briefcase,
+  },
+  {
+    num: "05",
+    title: "COMMERCIAL & HOSPITALITY",
+    desc: "Creating experiential commercial environments for luxury retail showrooms, restaurants, and private hospitality lounges.",
+    icon: Building,
+  },
+  {
+    num: "06",
+    title: "BESPOKE OBJECT & FURNITURE",
+    desc: "Custom furniture pieces sculpted from seasoned oak, patinated brass, hand-picked marble, and Belgian linen upholstery.",
+    icon: Palette,
+  },
+  {
+    num: "07",
+    title: "ARCHITECTURAL FALSE CEILING",
+    desc: "Multi-layered floating ceiling plans concealing HVAC ducts, high-fidelity sound networks, and micro magnetic track profiles.",
+    icon: Layers,
+  },
+  {
+    num: "08",
+    title: "ATMOSPHERIC LIGHTING DESIGN",
+    desc: "Engineering layered lighting topologies that shape spatial depth, accentuate architectural textures, and adapt between day and night.",
+    icon: Lightbulb,
+  },
+];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  };
-
+export default function Services({ onOpenContact }) {
   return (
-    <section id="services" className="py-24 bg-secondary/50 relative overflow-hidden">
-      {/* Decorative Blur Spheres */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-0 w-80 h-80 bg-primary/5 rounded-full filter blur-3xl pointer-events-none" />
+    <section id="services" className="py-24 sm:py-36 bg-[#0b0b0b] relative overflow-hidden hairline-b">
+      
+      {/* Background Giant Ghost Chapter Typography */}
+      <div className="absolute top-10 right-4 chapter-number-ghost text-[14vw]">
+        03
+      </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 relative z-10">
         
-        {/* Title Block */}
-        <div className="text-center mb-20">
-          <span className="text-xs uppercase tracking-[0.25em] text-accent font-bold divider-gold">
-            Our Services
+        {/* Chapter Eyebrow */}
+        <div className="flex items-center gap-3 mb-6">
+          <span className="chapter-tag">
+            CHAPTER III &bull; 03 / SERVICES
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-primary tracking-tight mt-4 font-plus-jakarta">
-            Bespoke Design Expertise
-          </h2>
-          <p className="text-gray-500 font-light mt-4 max-w-xl mx-auto text-sm md:text-base">
-            From layout architectural design to raw custom finishing, we manage the entire project lifecycle for elite spaces.
-          </p>
+          <span className="w-12 h-[1px] bg-[#c49678]/40" />
+          <span className="text-[10px] tracking-[0.2em] text-[#777] uppercase">
+            DISCIPLINE OF CRAFT
+          </span>
         </div>
 
-        {/* Services Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-        >
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
+        {/* Display Title */}
+        <div className="mb-14 sm:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          <div className="lg:col-span-8">
+            <h2 className="display-title text-3xl sm:text-5xl md:text-7xl lg:text-[5rem] text-white">
+              THE DISCIPLINE OF{" "}
+              <span className="text-copper-gradient font-light italic">
+                CRAFT.
+              </span>
+            </h2>
+          </div>
+          <div className="lg:col-span-4 lg:text-right">
+            <p className="text-xs sm:text-sm text-[#888] font-light leading-relaxed">
+              From spatial structural planning to bespoke handcrafted joinery, we orchestrate the complete design lifecycle.
+            </p>
+          </div>
+        </div>
+
+        {/* Services List Rows (Nabil Issa Style) */}
+        <div className="hairline-t">
+          {SERVICES.map((service, idx) => {
+            const Icon = service.icon;
             return (
               <motion.div
-                key={index}
-                variants={cardVariants}
-                className="glassmorphism-card p-8 rounded-2xl flex flex-col justify-between group cursor-pointer"
+                key={service.num}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
+                className="group py-8 sm:py-10 hairline-b flex flex-col md:flex-row md:items-center justify-between gap-6 transition-all duration-300 hover:bg-[#121212] px-4 sm:px-6 cursor-default"
               >
-                <div>
-                  {/* Icon Wrapper */}
-                  <div className="w-14 h-14 rounded-2xl bg-accent/10 border border-accent/25 flex items-center justify-center text-accent mb-6 group-hover:bg-gold-gradient group-hover:text-primary transition-all duration-500 shadow-sm">
-                    <IconComponent className="w-6 h-6 transition-transform duration-500 group-hover:scale-110" />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="text-lg font-bold text-primary mb-3 font-plus-jakarta group-hover:text-accent transition-colors duration-300">
+                {/* Number & Title */}
+                <div className="flex items-baseline gap-6 md:w-5/12">
+                  <span className="font-mono text-xs sm:text-sm text-[#c49678] font-medium">
+                    {service.num}
+                  </span>
+                  <h3 className="display-title text-lg sm:text-2xl text-white group-hover:text-[#c49678] transition-colors">
                     {service.title}
                   </h3>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-gray-500 font-light text-sm leading-relaxed">
+                {/* Description */}
+                <div className="md:w-6/12">
+                  <p className="text-xs sm:text-sm text-[#777] font-light leading-relaxed group-hover:text-[#bbb] transition-colors">
                     {service.desc}
                   </p>
                 </div>
 
-                {/* Accent line effect at the bottom */}
-                <div className="w-0 h-0.5 bg-accent group-hover:w-12 mt-6 transition-all duration-500" />
+                {/* Icon Action Indicator */}
+                <div className="md:w-1/12 flex md:justify-end items-center">
+                  <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center text-[#777] group-hover:border-[#c49678] group-hover:text-[#c49678] group-hover:scale-110 transition-all">
+                    <Icon size={14} />
+                  </div>
+                </div>
+
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
+
+        {/* Bottom Callout */}
+        <div className="mt-16 sm:mt-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 bg-[#121212] hairline-all luxury-card-shine">
+          <div>
+            <span className="chapter-tag text-[9px] block mb-1">TURNKEY ARCHITECTURAL SCOPE</span>
+            <h4 className="text-sm font-semibold text-white tracking-wider uppercase">
+              NEED BESPOKE SPATIAL CONSULTATION FOR YOUR UPCOMING PROPERTY?
+            </h4>
+          </div>
+          <MagneticButton
+            onClick={onOpenContact}
+            className="pill-btn-copper text-xs shrink-0"
+          >
+            <span>INQUIRE FOR YOUR PROPERTY</span>
+            <ArrowRight size={14} />
+          </MagneticButton>
+        </div>
+
       </div>
+
     </section>
   );
 }

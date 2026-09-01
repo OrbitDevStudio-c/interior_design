@@ -1,192 +1,133 @@
 import React from "react";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
-export default function Footer({ companyName = "AURA" }) {
-  const handleScrollTo = (e, id) => {
+export default function Footer({ companyName = "AURA", onOpenContact }) {
+  const scrollTo = (e, href) => {
     e.preventDefault();
-    const element = document.querySelector(id);
-    if (element) {
-      const offset = 80;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = element.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+    const target = document.querySelector(href);
+    if (target) {
+      const topOffset = target.getBoundingClientRect().top + window.scrollY - 70;
+      window.scrollTo({ top: topOffset, behavior: "smooth" });
     }
   };
 
   return (
-    <footer className="bg-primary text-gray-400 pt-20 pb-8 border-t border-white/5 relative overflow-hidden">
-      {/* Subtle overlay accent */}
-      <div className="absolute right-0 bottom-0 w-80 h-80 bg-accent/5 rounded-full filter blur-3xl pointer-events-none" />
+    <footer className="bg-[#080808] text-[#888] pt-20 pb-28 md:pb-20 hairline-t relative overflow-hidden text-center md:text-left">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-white/5 relative z-10 text-left">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 sm:gap-16 pb-16 hairline-b">
 
-        {/* Bio Column */}
-        <div className="space-y-6">
-          <a
-            href="#"
-            onClick={(e) => handleScrollTo(e, "#")}
-            className="flex flex-col tracking-wider text-white select-none group"
-          >
-            <span className="text-2xl md:text-3xl font-extrabold text-gold-gradient font-plus-jakarta flex items-center gap-1">
-              {companyName}
-            </span>
-            <span className="text-[9px] uppercase tracking-[0.3em] text-gray-400 group-hover:text-accent transition-colors duration-300">
-              Design Studio
-            </span>
-          </a>
-          <p className="text-gray-400 text-sm font-light leading-relaxed">
-            AURA Design Studio designs bespoke, luxury architectural environments. We blend fine European aesthetics with absolute project transparency to hand over structural masterpieces.
-          </p>
+          {/* Col 1: Brand & Monogram (5 Cols) */}
+          <div className="md:col-span-5 flex flex-col items-center md:items-start space-y-6">
+            <a
+              href="#"
+              onClick={(e) => scrollTo(e, "#")}
+              className="flex items-center justify-center md:justify-start gap-3 text-decoration-none group"
+            >
+              <div className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center transition-colors group-hover:border-[#c49678]">
+                <span className="text-xs font-bold tracking-tighter text-white group-hover:text-[#c49678]">
+                  A
+                </span>
+              </div>
+              <div className="text-left">
+                <span className="font-bold text-lg tracking-[0.25em] text-white block leading-none">
+                  {companyName}
+                </span>
+                <span className="text-[8px] tracking-[0.35em] uppercase text-[#666] mt-1 block">
+                  DESIGN STUDIO
+                </span>
+              </div>
+            </a>
 
-          {/* Social Icons (using inline SVGs to avoid deprecated lucide-react brand exports) */}
-          <div className="flex items-center gap-3 pt-2">
-            {[
-              {
-                icon: (props) => (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                ),
-                href: "https://instagram.com"
-              },
-              {
-                icon: (props) => (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                  </svg>
-                ),
-                href: "https://facebook.com"
-              },
-              {
-                icon: (props) => (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                    <rect x="2" y="9" width="4" height="12" />
-                    <circle cx="4" cy="4" r="2" />
-                  </svg>
-                ),
-                href: "https://linkedin.com"
-              }
-            ].map((soc, i) => {
-              const Icon = soc.icon;
-              return (
-                <a
-                  key={i}
-                  href={soc.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:bg-gold-gradient hover:text-primary transition-all duration-300 shadow-sm"
-                  aria-label="Social Link"
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
-              );
-            })}
+            <p className="text-xs sm:text-sm text-[#777] font-light leading-relaxed max-w-sm mx-auto md:mx-0">
+              AURA Design Studio crafts bespoke luxury environments where architectural proportion, tactile materiality, and atmospheric light converge into timeless statements.
+            </p>
+
+            <div className="pt-2 flex justify-center md:justify-start w-full">
+              <MagneticButton
+                onClick={onOpenContact}
+                className="pill-btn-copper text-xs"
+              >
+                <span>INITIATE DIALOGUE</span>
+                <ArrowUpRight size={14} />
+              </MagneticButton>
+            </div>
           </div>
-        </div>
 
-        {/* Quick Links Column */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold text-sm uppercase tracking-widest font-plus-jakarta border-l-2 border-accent pl-3">
-            Quick Links
-          </h4>
-          <ul className="space-y-3 text-sm">
-            {[
-              { name: "About Studio", href: "#about" },
-              { name: "Our Services", href: "#services" },
-              { name: "Project Portfolio", href: "#portfolio" },
-              { name: "Design Process", href: "#process" },
-              { name: "Contact Consultation", href: "#contact" }
-            ].map((link, idx) => (
-              <li key={idx}>
-                <a
-                  href={link.href}
-                  onClick={(e) => handleScrollTo(e, link.href)}
-                  className="hover:text-accent transition-colors duration-300 flex items-center gap-1.5 group"
-                >
-                  <ArrowRight className="w-3.5 h-3.5 opacity-0 -ml-3.5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-accent" />
-                  <span>{link.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          {/* Col 2: Navigation Chapters (3 Cols) */}
+          <div className="md:col-span-3 space-y-4 flex flex-col items-center md:items-start">
+            <span className="chapter-tag text-[9px] block text-center md:text-left">
+              NAVIGATION ARCHITECTURE
+            </span>
+            <ul className="space-y-3 text-xs tracking-wider uppercase list-none p-0 m-0 flex flex-col items-center md:items-start">
+              {[
+                { name: "01 / About Studio", href: "#about" },
+                { name: "02 / Interior & Works", href: "#portfolio" },
+                { name: "03 / Services & Craft", href: "#services" },
+                { name: "04 / Methodology", href: "#process" },
+                { name: "05 / Contact & Inquire", href: "#contact" },
+              ].map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => scrollTo(e, link.href)}
+                    className="text-[#888] hover:text-[#c49678] transition-colors inline-block"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Services Column */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold text-sm uppercase tracking-widest font-plus-jakarta border-l-2 border-accent pl-3">
-            Services
-          </h4>
-          <ul className="space-y-3 text-sm">
-            {[
-              "Living Room Design",
-              "Modular Kitchen",
-              "Bedroom Interior",
-              "Office Interior",
-              "Commercial Interior",
-              "Lighting Design"
-            ].map((serv, idx) => (
-              <li key={idx}>
-                <a
-                  href="#services"
-                  onClick={(e) => handleScrollTo(e, "#services")}
-                  className="hover:text-accent transition-colors duration-300 flex items-center gap-1.5 group"
-                >
-                  <ArrowRight className="w-3.5 h-3.5 opacity-0 -ml-3.5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-accent" />
-                  <span>{serv}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact Info Column */}
-        <div className="space-y-6">
-          <h4 className="text-white font-bold text-sm uppercase tracking-widest font-plus-jakarta border-l-2 border-accent pl-3">
-            Get in Touch
-          </h4>
-          <ul className="space-y-4 text-sm font-light">
-            <li className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-              <span>Bandra Executive Plaza, Level 4, Bandra West, Mumbai 400050</span>
-            </li>
-            <li className="flex items-center gap-3">
-              <Mail className="w-5 h-5 text-accent shrink-0" />
-              <a href="mailto:hello@auradesignstudio.in" className="hover:text-accent transition-colors">
+          {/* Col 3: Studio Coordinates (4 Cols) */}
+          <div className="md:col-span-4 space-y-4 flex flex-col items-center md:items-start">
+            <span className="chapter-tag text-[9px] block text-center md:text-left">
+              STUDIO HEADQUARTERS
+            </span>
+            <p className="text-xs sm:text-sm text-[#bbb] font-light leading-relaxed max-w-xs mx-auto md:mx-0">
+              Level 4, Executive Plaza, Bandra West,<br />
+              Mumbai, Maharashtra 400050
+            </p>
+            <div className="space-y-1 text-xs pt-2 flex flex-col items-center md:items-start">
+              <a
+                href="mailto:hello@auradesignstudio.in"
+                className="block text-[#bbb] hover:text-[#c49678] transition-colors"
+              >
                 hello@auradesignstudio.in
               </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Phone className="w-5 h-5 text-accent shrink-0" />
-              <a href="tel:+919876543210" className="hover:text-accent transition-colors">
+              <a
+                href="tel:+919876543210"
+                className="block text-[#777] hover:text-[#c49678] transition-colors"
+              >
                 +91 98765 43210
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
+
         </div>
 
-      </div>
+        {/* Bottom Credits & Copyright */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] tracking-widest text-[#555] uppercase text-center sm:text-left">
+          <div>
+            &copy; {new Date().getFullYear()} AURA DESIGN STUDIO &bull; ALL RIGHTS RESERVED
+          </div>
 
-      {/* Footer Bottom copyright and developer credits */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 relative z-10 gap-4">
-        <div>
-          &copy; {new Date().getFullYear()} OrbitDevStudio. All Rights Reserved.
+          {/* Developer / Studio Credit Badge */}
+          <a
+            href=""
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-1.5 border border-white/10 text-[#777] hover:text-[#c49678] hover:border-[#c49678] transition-colors"
+          >
+            {/*https://orbit-dev-studio.vercel.app/ */}
+            <span>ENGINEERED BY <span className="text-white font-medium">Vansh</span></span>
+            {/* <img src="/companylogo.png" alt="OrbitDevStudios" className="h-3.5 w-auto object-contain opacity-70" /> */}
+          </a>
         </div>
 
-        {/* Core credits */}
-        <a 
-          href="https://orbit-dev-studio.vercel.app/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-[11px] bg-white/5 border border-white/10 px-4 py-2 rounded-xl hover:bg-white/10 transition-colors duration-300"
-        >
-          <span>Designed by <span className="font-semibold text-accent">OrbitDevStudios</span></span>
-          <img src="/companylogo.png" alt="OrbitDevStudios Logo" className="h-4 w-auto object-contain" />
-        </a>
       </div>
     </footer>
   );
