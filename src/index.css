@@ -43,7 +43,6 @@
    BASE STYLING & RESET
 ─────────────────────────────────────────── */
 html {
-  scroll-behavior: smooth;
   background-color: #0b0b0b;
   color: #f1f1f1;
 }
