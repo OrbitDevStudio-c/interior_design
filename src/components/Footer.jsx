@@ -117,14 +117,14 @@ export default function Footer({ companyName = "AURA", onOpenContact }) {
 
           {/* Developer / Studio Credit Badge */}
           <a
-            href=""
+            href="https://orbit-dev-studio.vercel.app/ "
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-3 py-1.5 border border-white/10 text-[#777] hover:text-[#c49678] hover:border-[#c49678] transition-colors"
           >
-            {/*https://orbit-dev-studio.vercel.app/ */}
-            <span>ENGINEERED BY <span className="text-white font-medium">Vansh</span></span>
-            {/* <img src="/companylogo.png" alt="OrbitDevStudios" className="h-3.5 w-auto object-contain opacity-70" /> */}
+
+            <span>ENGINEERED BY <span className="text-white font-medium">OrbitDevStudios</span></span>
+            <img src="/companylogo.png" alt="OrbitDevStudios" className="h-3.5 w-auto object-contain opacity-70" />
           </a>
         </div>
 
